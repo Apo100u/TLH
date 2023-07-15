@@ -28,7 +28,7 @@ namespace TLH.Gameplay.Entities.Behaviours
             this.dash = dash;
         }
         
-        public void SetDirection(Vector2 direction)
+        public void UpdateDirection(Vector2 direction)
         {
             this.direction = direction;
         }

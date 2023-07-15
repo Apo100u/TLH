@@ -30,7 +30,7 @@ namespace TLH.Gameplay.Entities
             Vector2 directionInput = inputReader.GetDirection();
             bool mobilityActionInput = inputReader.GetMobilityAction();
 
-            movement.SetDirection(directionInput);
+            movement.UpdateDirection(directionInput);
         }
     }
 }
