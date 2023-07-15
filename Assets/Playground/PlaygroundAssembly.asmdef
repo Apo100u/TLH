@@ -1,0 +1,17 @@
+{
+    "name": "PlaygroundAssembly",
+    "rootNamespace": "",
+    "references": [
+        "GUID:71ffe7c061920bb49ad1601646a442d1",
+        "GUID:c342bfa1ac6408e4bb44c46d898aff33"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
