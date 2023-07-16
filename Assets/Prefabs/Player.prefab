@@ -34,7 +34,7 @@ Transform:
   - {fileID: 229178922067489501}
   - {fileID: 2833712770306043552}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1203701589683520611
 MonoBehaviour:
@@ -181,7 +181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2833712770306043552}
-  - component: {fileID: 5475072228353573687}
+  - component: {fileID: 8762818035242746995}
   m_Layer: 0
   m_Name: MovementCollider
   m_TagString: Untagged
@@ -204,8 +204,8 @@ Transform:
   m_Father: {fileID: 1928827149506746679}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &5475072228353573687
-CapsuleCollider2D:
+--- !u!58 &8762818035242746995
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -236,6 +236,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00000002416963, y: -0.20274958}
-  m_Size: {x: 0.87681293, y: 0.59450644}
-  m_Direction: 1
+  m_Offset: {x: 0, y: -0.19644126}
+  serializedVersion: 2
+  m_Radius: 0.30355874
