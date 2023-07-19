@@ -1,7 +1,6 @@
-
 using UnityEngine;
 
-namespace TLH.Gameplay.Entities.Actions
+namespace TLH.Gameplay.Entities.ActionData
 {
     [CreateAssetMenu(fileName = "New Run Action", menuName = EntityActionDataMenuName + nameof(RunData))]
     public class RunData : EntityActionData

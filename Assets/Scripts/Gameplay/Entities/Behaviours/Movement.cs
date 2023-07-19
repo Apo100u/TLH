@@ -1,4 +1,4 @@
-using TLH.Gameplay.Entities.Actions;
+using TLH.Gameplay.Entities.ActionData;
 using UnityEngine;
 
 namespace TLH.Gameplay.Entities.Behaviours

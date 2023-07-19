@@ -1,4 +1,4 @@
-using TLH.Gameplay.Entities.Actions;
+using TLH.Gameplay.Entities.ActionData;
 using TLH.Gameplay.Entities.Behaviours;
 using TLH.Gameplay.Entities.PlayerStateMachine;
 using TLH.Input;

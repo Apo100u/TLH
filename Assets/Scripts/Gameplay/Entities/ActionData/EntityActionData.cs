@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TLH.Gameplay.Entities.Actions
+namespace TLH.Gameplay.Entities.ActionData
 {
     public abstract class EntityActionData : ScriptableObject
     {
