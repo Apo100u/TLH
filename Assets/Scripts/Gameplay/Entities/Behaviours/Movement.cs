@@ -8,8 +8,8 @@ namespace TLH.Gameplay.Entities.Behaviours
     {
         private Rigidbody2D entitiesRigidbody;
         
-        private Run run;
-        // private Dash dash; // TODO
+        private RunData runData;
+        // private DashData dashData; // TODO
 
         protected override void Awake()
         {
@@ -17,19 +17,19 @@ namespace TLH.Gameplay.Entities.Behaviours
             entitiesRigidbody = GetComponent<Rigidbody2D>();
         }
 
-        public void SetRun(Run run)
+        public void SetRunData(RunData runData)
         {
-            this.run = run;
+            this.runData = runData;
         }
 
-        public void SetDash(/*Dash dash*/)
+        public void SetDashData(/*DashData dashData*/)
         {
-            // this.dash = dash;
+            // this.dashData = dashData;
         }
         
         public void PerformRun(Vector2 direction)
         {
-            entitiesRigidbody.velocity = direction.normalized * run.Speed;
+            entitiesRigidbody.velocity = direction.normalized * runData.Speed;
         }
     }
 }

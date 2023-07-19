@@ -10,7 +10,7 @@ namespace TLH.Gameplay.Entities
     public class Player : Entity
     {
         [Header("Default Actions")]
-        [SerializeField] private Run defaultRun;
+        [SerializeField] private RunData defaultRunData;
 
         private InputReader inputReader;
         private Movement movement;
@@ -27,7 +27,7 @@ namespace TLH.Gameplay.Entities
         private void SetupBehaviours()
         {
             movement = GetComponent<Movement>();
-            movement.SetRun(defaultRun);
+            movement.SetRunData(defaultRunData);
         }
 
         private void SetupStateMachine()
