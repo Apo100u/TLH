@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TLH.Helpers
+namespace TLH.Utility
 {
     /// <summary>
     /// Helper that helps in finding place not obstructed by certain layers.
