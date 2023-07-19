@@ -32,7 +32,7 @@ namespace TLH.Gameplay.Entities
 
         private void SetupStateMachine()
         {
-            RunState runState = new(ChangeState);
+            RunState runState = new(ChangeState, movement, inputReader);
             MobilityActionState mobilityActionState = new(ChangeState);
 
             runState.AddTransition(Command.MobilityAction, mobilityActionState);
@@ -44,6 +44,11 @@ namespace TLH.Gameplay.Entities
         private void Update()
         {
             currentState.Process();
+
+            if (inputReader.GetMobilityAction())
+            {
+                currentState.ExecuteCommand(Command.MobilityAction);
+            }
         }
 
         private void ChangeState(StateChangeEventArgs args)
