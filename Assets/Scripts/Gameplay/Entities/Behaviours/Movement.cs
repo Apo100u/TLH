@@ -7,10 +7,9 @@ namespace TLH.Gameplay.Entities.Behaviours
     public class Movement : EntityBehaviour
     {
         private Rigidbody2D entitiesRigidbody;
-        private Vector2 direction;
         
         private Run run;
-        private Dash dash;
+        // private Dash dash; // TODO
 
         protected override void Awake()
         {
@@ -23,17 +22,12 @@ namespace TLH.Gameplay.Entities.Behaviours
             this.run = run;
         }
 
-        public void SetDash(Dash dash)
+        public void SetDash(/*Dash dash*/)
         {
-            this.dash = dash;
+            // this.dash = dash;
         }
         
-        public void UpdateDirection(Vector2 direction)
-        {
-            this.direction = direction;
-        }
-
-        private void Update()
+        public void PerformRun(Vector2 direction)
         {
             entitiesRigidbody.velocity = direction.normalized * run.Speed;
         }

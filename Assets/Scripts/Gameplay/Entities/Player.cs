@@ -8,11 +8,11 @@ namespace TLH.Gameplay.Entities
     [RequireComponent(typeof(Movement))]
     public class Player : Entity
     {
-        private InputReader inputReader;
-        private Movement movement;
-
         [Header("Default Actions")]
         [SerializeField] private Run defaultRun;
+
+        private InputReader inputReader;
+        private Movement movement;
 
         public void Init(InputReader inputReader)
         {
@@ -23,14 +23,6 @@ namespace TLH.Gameplay.Entities
         {
             movement = GetComponent<Movement>();
             movement.SetRun(defaultRun);
-        }
-
-        private void Update()
-        {
-            Vector2 directionInput = inputReader.GetDirection();
-            bool mobilityActionInput = inputReader.GetMobilityAction();
-
-            movement.UpdateDirection(directionInput);
         }
     }
 }
