@@ -44,6 +44,11 @@ namespace TLH.Gameplay.Entities
 
         private void Update()
         {
+            UpdateStateMachine();
+        }
+
+        private void UpdateStateMachine()
+        {
             currentState.Process();
 
             if (inputReader.GetMobilityAction())

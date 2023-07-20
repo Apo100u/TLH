@@ -6,7 +6,7 @@ namespace TLH.Gameplay.Entities.PlayerStateMachine
     public abstract class PlayerState
     {
         protected Action<StateChangeEventArgs> stateChangeCallback;
-        private Dictionary<Command, PlayerState> transitions = new();
+        private Dictionary<Command, StateTransition> transitions = new();
 
         protected PlayerState(Action<StateChangeEventArgs> stateChangeCallback)
         {
@@ -28,16 +28,23 @@ namespace TLH.Gameplay.Entities.PlayerStateMachine
             
         }
 
-        public void AddTransition(Command command, PlayerState stateToActivate)
+        public StateTransition AddTransition(Command command, PlayerState stateToActivate)
         {
-            transitions.Add(command, stateToActivate);
+            StateTransition stateTransition = new(stateToActivate);
+            transitions.Add(command, stateTransition);
+            return stateTransition;
         }
 
         public void ExecuteCommand(Command command)
         {
-            if (transitions.TryGetValue(command, out PlayerState newState))
+            if (transitions.TryGetValue(command, out StateTransition stateTransition))
             {
-                stateChangeCallback?.Invoke(new StateChangeEventArgs(newState));
+                bool conditionSatisfied = stateTransition.Condition == null || stateTransition.Condition();
+
+                if (conditionSatisfied)
+                {
+                    stateChangeCallback?.Invoke(new StateChangeEventArgs(stateTransition.NewState));
+                }
             }
         }
     }
