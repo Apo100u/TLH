@@ -5,7 +5,7 @@ namespace TLH.Gameplay.Entities.PlayerStateMachine
 {
     public abstract class PlayerState
     {
-        private Action<StateChangeEventArgs> stateChangeCallback;
+        protected Action<StateChangeEventArgs> stateChangeCallback;
         private Dictionary<Command, PlayerState> transitions = new();
 
         protected PlayerState(Action<StateChangeEventArgs> stateChangeCallback)

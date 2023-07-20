@@ -6,7 +6,10 @@ namespace TLH.Gameplay.Entities.ActionData
     public class DashData : EntityActionData
     {
         [SerializeField] private float distance = 5f;
-
         public float Distance => distance;
+        
+        [SerializeField] private float speed = 15f;
+        public float Speed => speed;
+
     }
 }

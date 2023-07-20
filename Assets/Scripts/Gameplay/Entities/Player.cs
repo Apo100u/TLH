@@ -11,10 +11,10 @@ namespace TLH.Gameplay.Entities
     {
         [Header("Default Actions")]
         [SerializeField] private RunData defaultRunData;
+        [SerializeField] private DashData defaultDashData;
 
         private InputReader inputReader;
         private Movement movement;
-
         private PlayerState currentState;
 
         public void Init(InputReader inputReader)
@@ -28,15 +28,16 @@ namespace TLH.Gameplay.Entities
         {
             movement = GetComponent<Movement>();
             movement.SetRunData(defaultRunData);
+            movement.SetDashData(defaultDashData);
         }
 
         private void SetupStateMachine()
         {
             RunState runState = new(ChangeState, movement, inputReader);
-            MobilityActionState mobilityActionState = new(ChangeState);
+            DashState dashState = new(ChangeState, movement, inputReader);
 
-            runState.AddTransition(Command.MobilityAction, mobilityActionState);
-            mobilityActionState.AddTransitionOnActionEnded(runState);
+            runState.AddTransition(Command.MobilityAction, dashState);
+            dashState.AddTransitionOnDashEnd(runState);
 
             currentState = runState;
         }

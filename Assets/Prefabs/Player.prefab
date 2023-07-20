@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultRunData: {fileID: 11400000, guid: 4bd52abad49d32c48bb45d144ecb9ab9, type: 2}
+  defaultDashData: {fileID: 11400000, guid: bb983894b6c882b48abb147e8932c6aa, type: 2}
 --- !u!50 &1816664292475757820
 Rigidbody2D:
   serializedVersion: 4
@@ -88,6 +89,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c88ea21a57e71440a81763181495e98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementCollider: {fileID: 8762818035242746995}
+  layersBlockingMovement:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &5157693313199565474
 GameObject:
   m_ObjectHideFlags: 0
