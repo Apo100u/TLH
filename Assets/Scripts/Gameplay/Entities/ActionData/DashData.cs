@@ -11,5 +11,7 @@ namespace TLH.Gameplay.Entities.ActionData
         [SerializeField] private float speed = 15f;
         public float Speed => speed;
 
+        [SerializeField] private float cooldown = 3f;
+        public float Cooldown => cooldown;
     }
 }

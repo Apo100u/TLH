@@ -36,7 +36,7 @@ namespace TLH.Gameplay.Entities
             RunState runState = new(ChangeState, movement, inputReader);
             DashState dashState = new(ChangeState, movement, inputReader);
 
-            runState.AddTransition(Command.MobilityAction, dashState);
+            runState.AddTransition(Command.MobilityAction, dashState).SetCondition(movement.IsDashAvailable);
             dashState.AddTransitionOnDashEnd(runState);
 
             currentState = runState;

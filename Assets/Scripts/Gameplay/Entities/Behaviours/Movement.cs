@@ -19,6 +19,7 @@ namespace TLH.Gameplay.Entities.Behaviours
         private Vector2 lastNonZeroRunDirection = Vector2.down;
         
         private bool isDashing;
+        private float remainingDashCooldown;
         private DashInfo currentDashInfo;
 
         protected override void Awake()
@@ -73,6 +74,26 @@ namespace TLH.Gameplay.Entities.Behaviours
             {
                 ProcessDash();
             }
+
+            UpdateCooldowns();
+        }
+
+        private void UpdateCooldowns()
+        {
+            if (remainingDashCooldown > 0)
+            {
+                remainingDashCooldown -= Time.deltaTime;
+
+                if (remainingDashCooldown < 0)
+                {
+                    remainingDashCooldown = 0;
+                }
+            }
+        }
+        
+        public bool IsDashAvailable()
+        {
+            return remainingDashCooldown <= 0;
         }
 
         private void ProcessDash()
@@ -107,6 +128,7 @@ namespace TLH.Gameplay.Entities.Behaviours
             currentDashInfo.EndCallback?.Invoke();
             currentDashInfo.EndCallback = null;
             currentDashInfo = null;
+            remainingDashCooldown = dashData.Cooldown;
         }
     }
 }
