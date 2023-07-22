@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TestDashData
   m_EditorClassIdentifier: 
   distance: 3
-  speed: 25
-  cooldown: 1
+  speed: 15
+  cooldown: 0.5
