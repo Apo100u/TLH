@@ -16,6 +16,7 @@ namespace TLH.Gameplay.Entities.Behaviours
         private RunData runData;
         private DashData dashData;
 
+        private Vector2 movementVelocity;
         private Vector2 lastNonZeroRunDirection = Vector2.down;
         
         private bool isDashing;
@@ -41,7 +42,8 @@ namespace TLH.Gameplay.Entities.Behaviours
         
         public void PerformRun(Vector2 direction)
         {
-            MoveRigidbody(direction, runData.Speed);
+            direction.Normalize();
+            movementVelocity = direction * runData.Speed;
 
             if (direction != Vector2.zero)
             {
@@ -59,13 +61,9 @@ namespace TLH.Gameplay.Entities.Behaviours
             StartDash(direction, dashEndCallback);
         }
 
-        private void MoveRigidbody(Vector2 direction, float speed)
+        private void FixedUpdate()
         {
-            // TODO: Remake into ProcessVelocity method called from FixedUpdate
-            // with velocity calculations based on velocity "wanted" by the entity and "independent" velocities like attack pushback or explosion for example.
-            // Consider introducing helper class like MovementForce with Direction, Speed and possibly optional Curve with speed over time and a variable
-            // holding current time for that force.
-            entitiesRigidbody.velocity = direction.normalized * speed;
+            ProcessVelocity();
         }
 
         private void Update()
@@ -78,6 +76,11 @@ namespace TLH.Gameplay.Entities.Behaviours
             UpdateCooldowns();
         }
 
+        private void ProcessVelocity()
+        {
+            entitiesRigidbody.velocity = movementVelocity;
+        }
+        
         private void UpdateCooldowns()
         {
             if (remainingDashCooldown > 0)
@@ -106,13 +109,14 @@ namespace TLH.Gameplay.Entities.Behaviours
             }
             else
             {
-                MoveRigidbody(currentDashInfo.Direction, dashData.Speed);
+                movementVelocity = currentDashInfo.Direction * dashData.Speed;
             }
         }
 
         private void StartDash(Vector2 direction, Action dashEndCallback = null)
         {
-            Vector2 targetPosition = (Vector2)transform.position + direction.normalized * dashData.Distance;
+            direction.Normalize();
+            Vector2 targetPosition = (Vector2)transform.position + direction * dashData.Distance;
             Vector2 unobstructedTargetPosition = unobstructedPlaceFinder.FindFurthestOnPath(transform.position, targetPosition, movementCollider.radius);
             float sqrDashDistanceToTravel = (unobstructedTargetPosition - (Vector2)transform.position).sqrMagnitude;
             
