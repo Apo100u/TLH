@@ -19,21 +19,5 @@ namespace TLH.Gameplay.Entities.Behaviours.Movement
             base.Process();
             entitiesRigidbody.velocity = movement.NormalizedDirection * movement.RunData.Speed;
         }
-
-        // public void PerformRun(Vector2 direction)
-        // {
-        //     direction.Normalize();
-        //     movementVelocity = direction * runData.Speed;
-        //
-        //     if (direction != Vector2.zero)
-        //     {
-        //         lastNonZeroRunDirection = direction;
-        //     }
-        // }
-        //
-        // private void ProcessVelocity()
-        // {
-        //     entitiesRigidbody.velocity = movementVelocity;
-        // }
     }
 }
