@@ -1,6 +1,5 @@
 using TLH.Gameplay.Entities.ActionData;
-using TLH.Gameplay.Entities.Behaviours;
-using TLH.Gameplay.Entities.PlayerStateMachine;
+using TLH.Gameplay.Entities.Behaviours.Movement;
 using TLH.Input;
 using UnityEngine;
 
@@ -15,13 +14,11 @@ namespace TLH.Gameplay.Entities
 
         private InputReader inputReader;
         private Movement movement;
-        private PlayerState currentState;
 
         public void Init(InputReader inputReader)
         {
             this.inputReader = inputReader;
             SetupBehaviours();
-            SetupStateMachine();
         }
 
         private void SetupBehaviours()
@@ -31,37 +28,14 @@ namespace TLH.Gameplay.Entities
             movement.SetDashData(defaultDashData);
         }
 
-        private void SetupStateMachine()
-        {
-            RunState runState = new(ChangeState, movement, inputReader);
-            DashState dashState = new(ChangeState, movement, inputReader);
-
-            runState.AddTransition(Command.MobilityAction, dashState).SetCondition(movement.IsDashAvailable);
-            dashState.AddTransitionOnDashEnd(runState);
-
-            currentState = runState;
-        }
-
         private void Update()
         {
-            UpdateStateMachine();
-        }
+            movement.UpdateDirection(inputReader.GetDirection());
 
-        private void UpdateStateMachine()
-        {
-            currentState.Process();
-
-            if (inputReader.GetMobilityAction())
+            if (inputReader.GetMobilityActionDown())
             {
-                currentState.ExecuteCommand(Command.MobilityAction);
+                movement.DemandDash();
             }
-        }
-
-        private void ChangeState(StateChangeEventArgs args)
-        {
-            currentState.OnExit();
-            currentState = args.NewState;
-            currentState.OnEnter();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace TLH.Input
             return direction;
         }
 
-        public override bool GetMobilityAction()
+        public override bool GetMobilityActionDown()
         {
             return UnityEngine.Input.GetKeyDown(KeyCode.Space);
         }

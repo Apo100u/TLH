@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c88ea21a57e71440a81763181495e98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementCollider: {fileID: 8762818035242746995}
+  collider: {fileID: 8762818035242746995}
   layersBlockingMovement:
     serializedVersion: 2
     m_Bits: 64
