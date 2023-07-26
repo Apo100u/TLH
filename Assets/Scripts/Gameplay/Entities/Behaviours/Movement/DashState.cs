@@ -54,6 +54,7 @@ namespace TLH.Gameplay.Entities.Behaviours.Movement
         
         private void EndDash()
         {
+            entitiesRigidbody.velocity = movement.NormalizedDirection * movement.RunData.MaxSpeed;
             movement.Collider.enabled = true;
             onDashEnded?.Invoke();
         }

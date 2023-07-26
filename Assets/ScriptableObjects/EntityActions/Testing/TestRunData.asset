@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: TestRunData
   m_EditorClassIdentifier: 
   speed: 5
+  sliding: 0.03
