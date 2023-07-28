@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultRunData: {fileID: 11400000, guid: 4bd52abad49d32c48bb45d144ecb9ab9, type: 2}
   defaultDashData: {fileID: 11400000, guid: bb983894b6c882b48abb147e8932c6aa, type: 2}
+  defaultAttackData: {fileID: 0}
 --- !u!114 &3844391476151107991
 MonoBehaviour:
   m_ObjectHideFlags: 0

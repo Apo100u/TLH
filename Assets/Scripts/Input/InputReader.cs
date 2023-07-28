@@ -6,5 +6,6 @@ namespace TLH.Input
     {
         public abstract Vector2 GetDirection();
         public abstract bool GetMobilityActionDown();
+        public abstract bool GetPrimaryActionDown();
     }
 }

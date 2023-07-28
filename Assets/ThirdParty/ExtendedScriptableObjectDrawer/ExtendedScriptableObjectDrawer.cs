@@ -44,9 +44,9 @@ public class ExtendedScriptableObjectDrawer : PropertyDrawer {
 		return totalHeight;
 	}
 
-	const int buttonWidth = 66;
-	
-	static readonly List<string> ignoreClassFullNames = new List<string>{ "TMPro.TMP_FontAsset" };
+	private const int buttonWidth = 66;
+
+	private static readonly List<string> ignoreClassFullNames = new List<string>{ "TMPro.TMP_FontAsset" };
 	
 	public override void OnGUI (Rect position, SerializedProperty property, GUIContent label) {
 		EditorGUI.BeginProperty (position, label, property);
@@ -184,7 +184,7 @@ public class ExtendedScriptableObjectDrawer : PropertyDrawer {
 		return objectReferenceValue;
 	}
 
-	static void DrawScriptableObjectChildFields<T> (T objectReferenceValue) where T : ScriptableObject {
+	private static void DrawScriptableObjectChildFields<T> (T objectReferenceValue) where T : ScriptableObject {
 		// Draw a background that shows us clearly which fields are part of the ScriptableObject
 		EditorGUI.indentLevel++;
 		EditorGUILayout.BeginVertical(GUI.skin.box);
@@ -255,7 +255,7 @@ public class ExtendedScriptableObjectDrawer : PropertyDrawer {
 	}
 
 	// Creates a new ScriptableObject via the default Save File panel
-	static ScriptableObject CreateAssetWithSavePrompt (Type type, string path) {
+	private static ScriptableObject CreateAssetWithSavePrompt (Type type, string path) {
 		path = EditorUtility.SaveFilePanelInProject("Save ScriptableObject", type.Name+".asset", "asset", "Enter a file name for the ScriptableObject.", path);
 		if (path == "") return null;
 		ScriptableObject asset = ScriptableObject.CreateInstance(type);
@@ -266,15 +266,15 @@ public class ExtendedScriptableObjectDrawer : PropertyDrawer {
 		EditorGUIUtility.PingObject(asset);
 		return asset;
 	}
-	
-	Type GetFieldType () {
+
+	private Type GetFieldType () {
 		Type type = fieldInfo.FieldType;
 		if(type.IsArray) type = type.GetElementType();
 		else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>)) type = type.GetGenericArguments()[0];
 		return type;
 	}
 
-	static bool AreAnySubPropertiesVisible(SerializedProperty property) {
+	private static bool AreAnySubPropertiesVisible(SerializedProperty property) {
 		var data = (ScriptableObject)property.objectReferenceValue;
 		SerializedObject serializedObject = new SerializedObject(data);
 		SerializedProperty prop = serializedObject.GetIterator();

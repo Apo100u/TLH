@@ -1,3 +1,5 @@
+using TLH.Gameplay.Entities.ActionData;
+
 namespace TLH.Gameplay.Entities.Behaviours
 {
     public class Combat : EntityBehaviour
@@ -7,6 +9,11 @@ namespace TLH.Gameplay.Entities.Behaviours
         public void SetAttackData(AttackData attackData)
         {
             this.attackData = attackData;
+        }
+
+        public void DemandAttack()
+        {
+            
         }
     }
 }
