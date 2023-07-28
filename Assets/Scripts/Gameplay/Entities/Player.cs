@@ -1,4 +1,5 @@
 using TLH.Gameplay.Entities.ActionData;
+using TLH.Gameplay.Entities.Behaviours;
 using TLH.Gameplay.Entities.Behaviours.Movement;
 using TLH.Input;
 using UnityEngine;
@@ -11,9 +12,11 @@ namespace TLH.Gameplay.Entities
         [Header("Default Actions")]
         [SerializeField] private RunData defaultRunData;
         [SerializeField] private DashData defaultDashData;
+        [SerializeField] private AttackData defaultAttackData;
 
         private InputReader inputReader;
         private Movement movement;
+        private Combat combat;
 
         public void Init(InputReader inputReader)
         {
@@ -26,6 +29,9 @@ namespace TLH.Gameplay.Entities
             movement = GetComponent<Movement>();
             movement.SetRunData(defaultRunData);
             movement.SetDashData(defaultDashData);
+
+            combat = GetComponent<Combat>();
+            combat.SetAttackData(defaultAttackData);
         }
 
         private void Update()
@@ -35,6 +41,11 @@ namespace TLH.Gameplay.Entities
             if (inputReader.GetMobilityActionDown())
             {
                 movement.DemandDash();
+            }
+
+            if (inputReader.GetPrimaryActionDown())
+            {
+                combat.DemandAttack();
             }
         }
     }
