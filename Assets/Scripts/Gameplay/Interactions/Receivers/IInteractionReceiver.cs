@@ -1,4 +1,6 @@
-namespace TLH.Gameplay.Interactions
+using TLH.Gameplay.Interactions.Types;
+
+namespace TLH.Gameplay.Interactions.Receivers
 {
     public interface IInteractionReceiver<TInteraction> : IInteractionReceiver where TInteraction : Interaction
     {

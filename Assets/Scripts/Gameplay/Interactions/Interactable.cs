@@ -1,3 +1,5 @@
+using TLH.Gameplay.Interactions.Receivers;
+using TLH.Gameplay.Interactions.Types;
 using UnityEngine;
 
 namespace TLH.Gameplay.Interactions
