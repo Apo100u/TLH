@@ -48,11 +48,6 @@ namespace TLH.Gameplay.Projectiles
             HandleCollision(collider);
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            HandleCollision(collision.collider);
-        }
-
         private void HandleCollision(Collider2D collider)
         {
             if (AttackData.LayersToDestroyOn.ContainsLayer(collider.gameObject.layer))

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3844391476151107991}
   - component: {fileID: 1203123734086240340}
   - component: {fileID: 1816664292475757820}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6358254726035259661}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ProjectilesSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   m_Component:
   - component: {fileID: 229178922067489501}
   - component: {fileID: 3616036995198031349}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2833712770306043552}
   - component: {fileID: 8762818035242746995}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MovementCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,7 +303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6787492155412905411}
   - component: {fileID: 9177904579677250761}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ProjectilesManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
