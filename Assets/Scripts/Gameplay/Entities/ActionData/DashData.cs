@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace TLH.Gameplay.Entities.ActionData
 {
-    [CreateAssetMenu(fileName = "New Dash Action Data", menuName = EntityActionDataMenuName + nameof(DashData))]
+    [CreateAssetMenu(fileName = "New Dash Data", menuName = EntityActionDataMenuName + nameof(DashData))]
     public class DashData : EntityActionData
     {
         [SerializeField] private float distance = 5f;

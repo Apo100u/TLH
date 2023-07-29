@@ -1,5 +1,5 @@
 using TLH.Gameplay.Entities.ActionData;
-using TLH.Gameplay.Entities.Behaviours;
+using TLH.Gameplay.Entities.Behaviours.Combat;
 using TLH.Gameplay.Entities.Behaviours.Movement;
 using TLH.Input;
 using UnityEngine;

@@ -1,4 +1,5 @@
 using TLH.Gameplay.Entities.ActionData;
+using UnityEngine;
 
 namespace TLH.Gameplay.Entities.Behaviours.Combat
 {
@@ -14,10 +15,14 @@ namespace TLH.Gameplay.Entities.Behaviours.Combat
 
         public void DemandPrimaryAttack()
         {
-            PerformAttack(primaryAttackData);
+            switch (primaryAttackData)
+            {
+                case ProjectileAttackData projectileAttackData: PerformProjectileAttack(projectileAttackData); break;
+                default: Debug.LogError($"{gameObject.name} tried to perform unhandled type of attack.", this); break;
+            }
         }
 
-        private void PerformAttack(AttackData attackData)
+        private void PerformProjectileAttack(ProjectileAttackData attackData)
         {
             if (attackData.ProjectilePrefab != null)
             {

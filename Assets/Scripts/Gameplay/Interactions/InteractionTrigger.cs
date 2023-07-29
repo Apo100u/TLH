@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TLH.Gameplay.Interactions.Types;
 using UnityEngine;
 
@@ -5,7 +6,12 @@ namespace TLH.Gameplay.Interactions
 {
     public class InteractionTrigger : MonoBehaviour
     {
-        [SerializeField] private Interaction[] interactions;
+        [SerializeField] private List<Interaction> interactions;
+
+        public void AddInteraction(Interaction interaction)
+        {
+            interactions.Add(interaction);
+        }
         
         protected virtual void OnTriggerEnter2D(Collider2D collider)
         {
@@ -19,7 +25,7 @@ namespace TLH.Gameplay.Interactions
 
         private void InteractWith(Interactable interactable)
         {
-            for (int i = 0; i < interactions.Length; i++)
+            for (int i = 0; i < interactions.Count; i++)
             {
                 interactable.HandleInteraction(interactions[i]);
             }

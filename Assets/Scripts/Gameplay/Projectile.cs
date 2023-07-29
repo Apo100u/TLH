@@ -6,17 +6,16 @@ namespace TLH.Gameplay
 {
     public class Projectile : InteractionTrigger
     {
-        [Tooltip("Layers on which this object will be destroyed. It will pierce other layers and still interact with them if possible.")]
-        [SerializeField] private LayerMask layersToDestroyOn;
-        [Tooltip("Time in seconds after which this object will be destroyed, if it wasn't already destroyed.")]
-        [SerializeField][Min(0f)] private float lifeTimeInSec = 10f;
-
         private Vector3 velocity;
+        private float lifeTimeInSec;
         private float shootTime;
+        private LayerMask layersToDestroyOn;
         
-        public void Shoot(Vector2 velocity)
+        public void Shoot(Vector2 velocity, float lifeTimeInSec, LayerMask layersToDestroyOn)
         {
             this.velocity = velocity;
+            this.lifeTimeInSec = lifeTimeInSec;
+            this.layersToDestroyOn = layersToDestroyOn;
             shootTime = Time.time;
         }
         
@@ -51,7 +50,13 @@ namespace TLH.Gameplay
 
         private void Deactivate()
         {
+            velocity = Vector2.zero;
             // TODO: Return projectile to pool.
+        }
+
+        public void Destroy()
+        {
+            Destroy(gameObject);
         }
     }
 }

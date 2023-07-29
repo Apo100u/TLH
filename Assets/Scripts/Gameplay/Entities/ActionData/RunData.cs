@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace TLH.Gameplay.Entities.ActionData
 {
-    [CreateAssetMenu(fileName = "New Run Action Data", menuName = EntityActionDataMenuName + nameof(RunData))]
+    [CreateAssetMenu(fileName = "New Run Data", menuName = EntityActionDataMenuName + nameof(RunData))]
     public class RunData : EntityActionData
     {
         [SerializeField][Min(0f)] private float maxSpeed = 5f;
