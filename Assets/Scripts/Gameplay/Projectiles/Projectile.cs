@@ -1,11 +1,15 @@
+using System;
 using TLH.Extensions;
 using TLH.Gameplay.Interactions;
 using UnityEngine;
 
-namespace TLH.Gameplay
+namespace TLH.Gameplay.Projectiles
 {
     public class Projectile : InteractionTrigger
     {
+        public event Action<Projectile> Deactivated;
+        public event Action<Projectile> Destroying;
+        
         private Vector3 velocity;
         private float lifeTimeInSec;
         private float shootTime;
@@ -51,11 +55,12 @@ namespace TLH.Gameplay
         private void Deactivate()
         {
             velocity = Vector2.zero;
-            // TODO: Return projectile to pool.
+            Deactivated?.Invoke(this);
         }
 
         public void Destroy()
         {
+            Destroying?.Invoke(this);
             Destroy(gameObject);
         }
     }

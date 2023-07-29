@@ -1,3 +1,4 @@
+using TLH.Gameplay.Projectiles;
 using UnityEngine;
 
 namespace TLH.Gameplay.Entities.ActionData

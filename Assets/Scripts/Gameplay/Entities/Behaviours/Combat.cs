@@ -1,12 +1,14 @@
 using TLH.Gameplay.Entities.ActionData;
+using TLH.Gameplay.Projectiles;
 using UnityEngine;
 
-namespace TLH.Gameplay.Entities.Behaviours.Combat
+namespace TLH.Gameplay.Entities.Behaviours
 {
     public class Combat : EntityBehaviour
     {
+        [SerializeField] private ProjectilesManager projectilesManager;
+
         private AttackData primaryAttackData;
-        private ProjectilesManager projectilesManager = new();
 
         public void SetPrimaryAttackData(AttackData primaryAttackData)
         {

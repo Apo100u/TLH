@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace TLH.Gameplay.Entities.Behaviours.Combat
+namespace TLH.Gameplay.Projectiles
 {
     public class ProjectilesPool
     {
