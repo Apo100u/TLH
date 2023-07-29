@@ -1,5 +1,6 @@
 using System;
 using TLH.Extensions;
+using TLH.Gameplay.Entities.ActionData;
 using TLH.Gameplay.Interactions;
 using UnityEngine;
 
@@ -9,17 +10,20 @@ namespace TLH.Gameplay.Projectiles
     {
         public event Action<Projectile> Deactivated;
         public event Action<Projectile> Destroying;
+
+        public ProjectileAttackData AttackData { get; private set; }
         
         private Vector3 velocity;
-        private float lifeTimeInSec;
         private float shootTime;
-        private LayerMask layersToDestroyOn;
-        
-        public void Shoot(Vector2 velocity, float lifeTimeInSec, LayerMask layersToDestroyOn)
+
+        public void Init(ProjectileAttackData attackData)
         {
-            this.velocity = velocity;
-            this.lifeTimeInSec = lifeTimeInSec;
-            this.layersToDestroyOn = layersToDestroyOn;
+            AttackData = attackData;
+        }
+        
+        public void Shoot(Vector2 directionNormalized)
+        {
+            velocity = directionNormalized * AttackData.Speed;
             shootTime = Time.time;
         }
         
@@ -27,7 +31,7 @@ namespace TLH.Gameplay.Projectiles
         {
             transform.position += velocity * Time.deltaTime;
 
-            if (Time.time > shootTime + lifeTimeInSec)
+            if (Time.time > shootTime + AttackData.LifeTimeInSec)
             {
                 Deactivate();
             }
@@ -46,7 +50,7 @@ namespace TLH.Gameplay.Projectiles
 
         private void HandleCollision(Collider2D collider)
         {
-            if (layersToDestroyOn.ContainLayer(collider.gameObject.layer))
+            if (AttackData.LayersToDestroyOn.ContainsLayer(collider.gameObject.layer))
             {
                 Deactivate();
             }

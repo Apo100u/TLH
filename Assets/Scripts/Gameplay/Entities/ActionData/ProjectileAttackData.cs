@@ -8,6 +8,9 @@ namespace TLH.Gameplay.Entities.ActionData
     {
         [SerializeField] private Projectile projectilePrefab;
         public Projectile ProjectilePrefab => projectilePrefab;
+
+        [SerializeField] private float speed = 10f;
+        public float Speed => speed;
         
         [Tooltip("Layers on which this object will be destroyed. It will pierce other layers and still interact with them if possible.")]
         [SerializeField] private LayerMask layersToDestroyOn;
