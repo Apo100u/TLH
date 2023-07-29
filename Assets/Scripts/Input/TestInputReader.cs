@@ -18,7 +18,10 @@ namespace TLH.Input
 
         public override Vector3 GetAimWorldPosition(Vector3 playerPosition, Camera camera)
         {
-            return camera.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
+            Vector3 aimWorldPosition = camera.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
+            aimWorldPosition.z = playerPosition.z;
+            
+            return aimWorldPosition;
         }
 
         public override bool GetMobilityActionDown()

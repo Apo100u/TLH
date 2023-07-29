@@ -6,16 +6,22 @@ using UnityEngine;
 
 namespace TLH.Gameplay.Projectiles
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class Projectile : InteractionTrigger
     {
         public event Action<Projectile> Deactivated;
         public event Action<Projectile> Destroying;
 
         public ProjectileAttackData AttackData { get; private set; }
-        
-        private Vector3 velocity;
+
+        private Rigidbody2D projectilesRigidbody;
         private float shootTime;
 
+        private void Awake()
+        {
+            projectilesRigidbody = GetComponent<Rigidbody2D>();
+        }
+        
         public void Init(ProjectileAttackData attackData)
         {
             AttackData = attackData;
@@ -24,14 +30,12 @@ namespace TLH.Gameplay.Projectiles
         public void Shoot(Vector2 directionNormalized)
         {
             transform.up = directionNormalized;
-            velocity = directionNormalized * AttackData.Speed;
+            projectilesRigidbody.velocity = directionNormalized * AttackData.Speed;
             shootTime = Time.time;
         }
         
         public void OnUpdate()
         {
-            transform.position += velocity * Time.deltaTime;
-
             if (Time.time > shootTime + AttackData.LifeTimeInSec)
             {
                 Deactivate();
@@ -59,7 +63,7 @@ namespace TLH.Gameplay.Projectiles
 
         private void Deactivate()
         {
-            velocity = Vector2.zero;
+            projectilesRigidbody.velocity = Vector2.zero;
             Deactivated?.Invoke(this);
         }
 
