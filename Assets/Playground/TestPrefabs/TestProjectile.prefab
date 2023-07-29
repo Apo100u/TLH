@@ -155,7 +155,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1345563277455672592}
   - component: {fileID: 6035376118624815432}
-  - component: {fileID: 6371319760298638739}
   m_Layer: 0
   m_Name: TestProjectile
   m_TagString: Untagged
@@ -191,24 +190,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd95a0f4f1a98b4d98e4c37cc5038a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactions: []
   layersToDestroyOn:
     serializedVersion: 2
     m_Bits: 65
   lifeTimeInSec: 10
---- !u!114 &6371319760298638739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7157764757583066400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aae69e551f5eb4479a533c010e8b35e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactions:
-  - {fileID: 11400000, guid: 893ef06bdc718124c9a5b1086662ca78, type: 2}
 --- !u!1 &7976362404921450608
 GameObject:
   m_ObjectHideFlags: 0

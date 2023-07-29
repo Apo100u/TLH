@@ -1,9 +1,10 @@
 using TLH.Extensions;
+using TLH.Gameplay.Interactions;
 using UnityEngine;
 
 namespace TLH.Gameplay
 {
-    public class Projectile : MonoBehaviour
+    public class Projectile : InteractionTrigger
     {
         [Tooltip("Layers on which this object will be destroyed. It will pierce other layers and still interact with them if possible.")]
         [SerializeField] private LayerMask layersToDestroyOn;
@@ -29,8 +30,9 @@ namespace TLH.Gameplay
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D collider)
+        protected override void OnTriggerEnter2D(Collider2D collider)
         {
+            base.OnTriggerEnter2D(collider);
             HandleCollision(collider);
         }
 

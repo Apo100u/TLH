@@ -31,7 +31,7 @@ namespace TLH.Gameplay.Entities
             movement.SetDashData(defaultDashData);
 
             combat = GetComponent<Combat>();
-            combat.SetAttackData(defaultAttackData);
+            combat.SetPrimaryAttackData(defaultAttackData);
         }
 
         private void Update()
@@ -45,7 +45,7 @@ namespace TLH.Gameplay.Entities
 
             if (inputReader.GetPrimaryActionDown())
             {
-                combat.DemandAttack();
+                combat.DemandPrimaryAttack();
             }
         }
     }

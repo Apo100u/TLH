@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a98df65c33b194640a0b6d975b8a72b9, type: 3}
   m_Name: TestAttackData
   m_EditorClassIdentifier: 
+  interactions:
+  - {fileID: 11400000, guid: 893ef06bdc718124c9a5b1086662ca78, type: 2}
   projectile: {fileID: 6035376118624815432, guid: 9f2c2e7e42137474cb646a261fb7490a, type: 3}

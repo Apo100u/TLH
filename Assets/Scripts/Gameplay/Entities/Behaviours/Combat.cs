@@ -4,16 +4,15 @@ namespace TLH.Gameplay.Entities.Behaviours
 {
     public class Combat : EntityBehaviour
     {
-        private AttackData attackData;
+        private AttackData primaryAttackData;
 
-        public void SetAttackData(AttackData attackData)
+        public void SetPrimaryAttackData(AttackData primaryAttackData)
         {
-            this.attackData = attackData;
+            this.primaryAttackData = primaryAttackData;
         }
 
-        public void DemandAttack()
+        public void DemandPrimaryAttack()
         {
-            
         }
     }
 }

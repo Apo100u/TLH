@@ -7,7 +7,7 @@ namespace TLH.Gameplay.Interactions
     {
         [SerializeField] private Interaction[] interactions;
         
-        private void OnTriggerEnter2D(Collider2D collider)
+        protected virtual void OnTriggerEnter2D(Collider2D collider)
         {
             Interactable interactable = collider.GetComponentInParent<Interactable>();
 
