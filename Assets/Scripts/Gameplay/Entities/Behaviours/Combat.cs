@@ -6,13 +6,22 @@ namespace TLH.Gameplay.Entities.Behaviours
 {
     public class Combat : EntityBehaviour
     {
-        [SerializeField] private ProjectilesManager projectilesManager;
+        [Header("Projectiles")]
+        [SerializeField] private Transform projectilesSpawnPoint;
+        [SerializeField] private ProjectileAttacksManager projectileAttacksManager;
 
         private AttackData primaryAttackData;
+        private Vector3 aimPointWorldPosition;
 
         public void SetPrimaryAttackData(AttackData primaryAttackData)
         {
             this.primaryAttackData = primaryAttackData;
+            OnAttackDataSet(primaryAttackData);
+        }
+
+        public void UpdateAimPoint(Vector3 aimPointWorldPosition)
+        {
+            this.aimPointWorldPosition = aimPointWorldPosition;
         }
 
         public void DemandPrimaryAttack()
@@ -28,7 +37,16 @@ namespace TLH.Gameplay.Entities.Behaviours
         {
             if (attackData.ProjectilePrefab != null)
             {
-                projectilesManager.ShootProjectileFromAttackData(attackData);
+                Vector2 direction = (aimPointWorldPosition - transform.position).normalized;
+                projectileAttacksManager.ShootProjectileFromAttackData(attackData, projectilesSpawnPoint.position, direction);
+            }
+        }
+
+        private void OnAttackDataSet(AttackData attackData)
+        {
+            if (attackData is ProjectileAttackData projectileAttackData)
+            {
+                projectileAttacksManager.RegisterHandledProjectileAttack(projectileAttackData);
             }
         }
     }

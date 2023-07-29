@@ -16,6 +16,11 @@ namespace TLH.Input
             return direction;
         }
 
+        public override Vector3 GetAimWorldPosition(Vector3 playerPosition, Camera camera)
+        {
+            return camera.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
+        }
+
         public override bool GetMobilityActionDown()
         {
             return UnityEngine.Input.GetKeyDown(KeyCode.Space);

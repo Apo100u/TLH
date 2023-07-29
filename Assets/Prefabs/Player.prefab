@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1928827149506746679}
   - component: {fileID: 1203701589683520611}
   - component: {fileID: 3844391476151107991}
+  - component: {fileID: 1203123734086240340}
   - component: {fileID: 1816664292475757820}
   m_Layer: 0
   m_Name: Player
@@ -34,6 +35,8 @@ Transform:
   m_Children:
   - {fileID: 229178922067489501}
   - {fileID: 2833712770306043552}
+  - {fileID: 6787492155412905411}
+  - {fileID: 6358254726035259661}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1203701589683520611
@@ -50,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultRunData: {fileID: 11400000, guid: 4bd52abad49d32c48bb45d144ecb9ab9, type: 2}
   defaultDashData: {fileID: 11400000, guid: bb983894b6c882b48abb147e8932c6aa, type: 2}
-  defaultAttackData: {fileID: 0}
+  defaultAttackData: {fileID: 11400000, guid: 28bd362bb42e19b41be29095d3950467, type: 2}
 --- !u!114 &3844391476151107991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,6 +70,20 @@ MonoBehaviour:
   layersBlockingMovement:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &1203123734086240340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3626806868807550806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78300d7a9d688bf45bfb5ba2bf583c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilesSpawnPoint: {fileID: 6358254726035259661}
+  projectileAttacksManager: {fileID: 9177904579677250761}
 --- !u!50 &1816664292475757820
 Rigidbody2D:
   serializedVersion: 4
@@ -94,6 +111,37 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!1 &4182076269600122871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6358254726035259661}
+  m_Layer: 0
+  m_Name: ProjectilesSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6358254726035259661
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4182076269600122871}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1928827149506746679}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5157693313199565474
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,3 +293,47 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.30355874
+--- !u!1 &6530800438017398044
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6787492155412905411}
+  - component: {fileID: 9177904579677250761}
+  m_Layer: 0
+  m_Name: ProjectilesManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6787492155412905411
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6530800438017398044}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1928827149506746679}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9177904579677250761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6530800438017398044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 412775efcb8c79d4b98abd3d4efd4c43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

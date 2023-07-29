@@ -757,6 +757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 3626806868807550806, guid: 2ca77eae43b0a734b8e80a25f3bdfce9, type: 3}
+  mainCamera: {fileID: 1157230484}
 --- !u!4 &982984307
 Transform:
   m_ObjectHideFlags: 0

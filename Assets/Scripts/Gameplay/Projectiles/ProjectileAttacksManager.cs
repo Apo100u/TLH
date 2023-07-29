@@ -33,9 +33,10 @@ namespace TLH.Gameplay.Projectiles
             }
         }
         
-        public void ShootProjectileFromAttackData(ProjectileAttackData attackData, Vector2 directionNormalized)
+        public void ShootProjectileFromAttackData(ProjectileAttackData attackData, Vector3 spawnPoint, Vector2 directionNormalized)
         {
             Projectile projectile = poolsByAttackData[attackData].Get();
+            projectile.transform.position = spawnPoint;
             projectile.Shoot(directionNormalized);
             activeProjectiles.Add(projectile);
         }
@@ -48,6 +49,12 @@ namespace TLH.Gameplay.Projectiles
                 createdProjectile.Init(attackData);
                 createdProjectile.Deactivated += OnProjectileDeactivated;
                 createdProjectile.Destroying += OnProjectileDestroyed;
+
+                for (int i = 0; i < attackData.Interactions.Length; i++)
+                {
+                    createdProjectile.AddInteraction(attackData.Interactions[i]);
+                }
+                
                 return createdProjectile;
             };
         }

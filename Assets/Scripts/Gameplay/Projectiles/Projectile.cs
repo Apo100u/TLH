@@ -23,6 +23,7 @@ namespace TLH.Gameplay.Projectiles
         
         public void Shoot(Vector2 directionNormalized)
         {
+            transform.up = directionNormalized;
             velocity = directionNormalized * AttackData.Speed;
             shootTime = Time.time;
         }

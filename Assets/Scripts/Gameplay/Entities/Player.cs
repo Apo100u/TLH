@@ -9,17 +9,20 @@ namespace TLH.Gameplay.Entities
     [RequireComponent(typeof(Movement))]
     public class Player : Entity
     {
+        
         [Header("Default Actions")]
         [SerializeField] private RunData defaultRunData;
         [SerializeField] private DashData defaultDashData;
         [SerializeField] private AttackData defaultAttackData;
 
+        private Camera mainCamera;
         private InputReader inputReader;
         private Movement movement;
         private Combat combat;
 
-        public void Init(InputReader inputReader)
+        public void Init(InputReader inputReader, Camera mainCamera)
         {
+            this.mainCamera = Camera.main;;
             this.inputReader = inputReader;
             SetupBehaviours();
         }
@@ -37,6 +40,7 @@ namespace TLH.Gameplay.Entities
         private void Update()
         {
             movement.UpdateDirection(inputReader.GetDirection());
+            combat.UpdateAimPoint(inputReader.GetAimWorldPosition(transform.position, mainCamera));
 
             if (inputReader.GetMobilityActionDown())
             {
