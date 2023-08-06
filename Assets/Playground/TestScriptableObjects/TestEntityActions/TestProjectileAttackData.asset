@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactions:
   - {fileID: 11400000, guid: 893ef06bdc718124c9a5b1086662ca78, type: 2}
+  cooldown: 0.3
   projectilePrefab: {fileID: 6035376118624815432, guid: 9f2c2e7e42137474cb646a261fb7490a, type: 3}
   speed: 10
   lifeTimeInSec: 5

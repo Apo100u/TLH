@@ -7,5 +7,8 @@ namespace TLH.Gameplay.Entities.ActionData
     {
         [SerializeField] private Interaction[] interactions;
         public Interaction[] Interactions => interactions;
+
+        [SerializeField] private float cooldown = 0.5f;
+        public float Cooldown => cooldown;
     }
 }

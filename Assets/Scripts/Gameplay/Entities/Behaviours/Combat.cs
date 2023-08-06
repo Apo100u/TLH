@@ -12,6 +12,8 @@ namespace TLH.Gameplay.Entities.Behaviours
 
         private AttackData primaryAttackData;
         private Vector3 aimPointWorldPosition;
+        
+        private float remainingPrimaryAttackCooldown;
 
         public void SetPrimaryAttackData(AttackData primaryAttackData)
         {
@@ -23,13 +25,36 @@ namespace TLH.Gameplay.Entities.Behaviours
         {
             this.aimPointWorldPosition = aimPointWorldPosition;
         }
+        
+        private void Update()
+        {
+            UpdateCooldowns();
+        }
+
+        private void UpdateCooldowns()
+        {
+            if (remainingPrimaryAttackCooldown > 0)
+            {
+                remainingPrimaryAttackCooldown -= Time.deltaTime;
+
+                if (remainingPrimaryAttackCooldown < 0)
+                {
+                    remainingPrimaryAttackCooldown = 0;
+                }
+            }
+        }
 
         public void DemandPrimaryAttack()
         {
-            switch (primaryAttackData)
+            if (CanPerformPrimaryAttack())
             {
-                case ProjectileAttackData projectileAttackData: PerformProjectileAttack(projectileAttackData); break;
-                default: Debug.LogError($"{gameObject.name} tried to perform unhandled type of attack.", this); break;
+                switch (primaryAttackData)
+                {
+                    case ProjectileAttackData projectileAttackData: PerformProjectileAttack(projectileAttackData); break;
+                    default: Debug.LogError($"{gameObject.name} tried to perform unhandled type of attack.", this); break;
+                }
+
+                remainingPrimaryAttackCooldown = primaryAttackData.Cooldown;
             }
         }
 
@@ -48,6 +73,11 @@ namespace TLH.Gameplay.Entities.Behaviours
             {
                 projectileAttacksManager.RegisterHandledProjectileAttack(projectileAttackData);
             }
+        }
+
+        private bool CanPerformPrimaryAttack()
+        {
+            return remainingPrimaryAttackCooldown <= 0;
         }
     }
 }

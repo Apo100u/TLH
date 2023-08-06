@@ -35,7 +35,7 @@ namespace TLH.Gameplay.Entities.Behaviours.Movement
             stateMachine = new StateMachine<MovementCommand, State<MovementCommand>>();
 
             State<MovementCommand> runState = new RunState(this, entitiesRigidbody)
-                .AddTransition<DashState>(MovementCommand.Dash, CanDash);
+                .AddTransition<DashState>(MovementCommand.Dash, CanPerformDash);
 
             State<MovementCommand> dashState = new DashState(this, entitiesRigidbody, OnDashEnded)
                 .AddTransition<RunState>(MovementCommand.DashEnded);
@@ -89,7 +89,7 @@ namespace TLH.Gameplay.Entities.Behaviours.Movement
             }
         }
 
-        private bool CanDash()
+        private bool CanPerformDash()
         {
             return remainingDashCooldown <= 0;
         }

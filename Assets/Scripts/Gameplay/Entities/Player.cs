@@ -48,7 +48,7 @@ namespace TLH.Gameplay.Entities
                 movement.DemandDash();
             }
 
-            if (inputReader.GetPrimaryActionDown())
+            if (inputReader.GetPrimaryAction())
             {
                 combat.DemandPrimaryAttack();
             }

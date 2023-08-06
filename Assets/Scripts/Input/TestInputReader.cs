@@ -29,9 +29,9 @@ namespace TLH.Input
             return UnityEngine.Input.GetKeyDown(KeyCode.Space);
         }
 
-        public override bool GetPrimaryActionDown()
+        public override bool GetPrimaryAction()
         {
-            return UnityEngine.Input.GetKeyDown(KeyCode.Mouse0);
+            return UnityEngine.Input.GetKey(KeyCode.Mouse0);
         }
     }
 }
