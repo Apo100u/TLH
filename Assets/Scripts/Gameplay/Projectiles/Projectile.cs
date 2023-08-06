@@ -16,6 +16,7 @@ namespace TLH.Gameplay.Projectiles
 
         private Rigidbody2D projectilesRigidbody;
         private float shootTime;
+        private bool isActive;
 
         private void Awake()
         {
@@ -29,6 +30,8 @@ namespace TLH.Gameplay.Projectiles
         
         public void Shoot(Vector2 directionNormalized)
         {
+            isActive = true;
+            gameObject.SetActive(true);
             transform.up = directionNormalized;
             projectilesRigidbody.velocity = directionNormalized * AttackData.Speed;
             shootTime = Time.time;
@@ -45,7 +48,11 @@ namespace TLH.Gameplay.Projectiles
         protected override void OnTriggerEnter2D(Collider2D collider)
         {
             base.OnTriggerEnter2D(collider);
-            HandleCollision(collider);
+
+            if (isActive)
+            {
+                HandleCollision(collider);
+            }
         }
 
         private void HandleCollision(Collider2D collider)
@@ -58,6 +65,8 @@ namespace TLH.Gameplay.Projectiles
 
         private void Deactivate()
         {
+            isActive = false;
+            gameObject.SetActive(false);
             projectilesRigidbody.velocity = Vector2.zero;
             Deactivated?.Invoke(this);
         }

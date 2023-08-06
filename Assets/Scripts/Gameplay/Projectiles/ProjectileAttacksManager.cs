@@ -38,7 +38,6 @@ namespace TLH.Gameplay.Projectiles
             Projectile projectile = poolsByAttackData[attackData].Get();
             projectile.transform.position = spawnPoint;
             projectile.Shoot(directionNormalized);
-            activeProjectiles.Add(projectile);
         }
         
         private Func<Projectile> GetCreateProjectileFunc(ProjectileAttackData attackData)
@@ -48,7 +47,7 @@ namespace TLH.Gameplay.Projectiles
                 Projectile createdProjectile = Instantiate(attackData.ProjectilePrefab);
                 createdProjectile.Init(attackData);
                 createdProjectile.Deactivated += OnProjectileDeactivated;
-                createdProjectile.Destroying += OnProjectileDestroyed;
+                createdProjectile.Destroying += OnProjectileDestroying;
 
                 for (int i = 0; i < attackData.Interactions.Length; i++)
                 {
@@ -61,13 +60,12 @@ namespace TLH.Gameplay.Projectiles
         
         private void OnProjectileTakenFromPool(Projectile projectile)
         {
-            projectile.gameObject.SetActive(true);
+            activeProjectiles.Add(projectile);
         }
 
         private void OnProjectileReturnedToPool(Projectile projectile)
         {
             activeProjectiles.Remove(projectile);
-            projectile.gameObject.SetActive(false);
         }
 
         private void OnProjectileSurpassedPoolCapacity(Projectile projectile)
@@ -80,7 +78,7 @@ namespace TLH.Gameplay.Projectiles
             poolsByAttackData[projectile.AttackData].Release(projectile);
         }
         
-        private void OnProjectileDestroyed(Projectile projectile)
+        private void OnProjectileDestroying(Projectile projectile)
         {
             activeProjectiles.Remove(projectile);
         }
