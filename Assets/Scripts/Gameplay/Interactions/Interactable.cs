@@ -6,21 +6,29 @@ namespace TLH.Gameplay.Interactions
 {
     public class Interactable : MonoBehaviour
     {
-        private IInteractionReceiver[] interactionReceivers;
-
+        private IInteractionReceiver<DamageInteraction>[] damageInteractionReceivers;
+        
         private void Awake()
         {
-            interactionReceivers = GetComponents<IInteractionReceiver>();
+            damageInteractionReceivers = GetComponents<IInteractionReceiver<DamageInteraction>>();
         }
 
         public void HandleInteraction<T>(T interaction) where T : Interaction
         {
-            for (int i = 0; i < interactionReceivers.Length; i++)
+            switch (interaction)
             {
-                if (interactionReceivers[i] is IInteractionReceiver<T> receiverOfHandledInteraction)
-                {
-                    receiverOfHandledInteraction.HandleInteraction(interaction);
-                }
+                case DamageInteraction damageInteraction: SendInteractionToReceivers(damageInteraction, damageInteractionReceivers); break;
+                
+                default: Debug.LogError($"{nameof(Interactable)} doesn't implement handling interaction type {interaction.GetType()}." +
+                                        "Most likely it should be added."); break;
+            }
+        }
+
+        private void SendInteractionToReceivers<T>(T interaction, IInteractionReceiver<T>[] receivers) where T : Interaction
+        {
+            for (int i = 0; i < receivers.Length; i++)
+            {
+                receivers[i].HandleInteraction(interaction);
             }
         }
     }
