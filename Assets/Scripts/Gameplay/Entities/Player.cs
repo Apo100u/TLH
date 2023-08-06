@@ -7,6 +7,7 @@ using UnityEngine;
 namespace TLH.Gameplay.Entities
 {
     [RequireComponent(typeof(Movement))]
+    [RequireComponent(typeof(Combat))]
     public class Player : Entity
     {
         

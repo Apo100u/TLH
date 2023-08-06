@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace TLH.Gameplay.Interactions.Receivers
 {
+    [RequireComponent(typeof(Interactable))]
     public class Health : MonoBehaviour, IInteractionReceiver<DamageInteraction>
     {
         [SerializeField] private int maxHealth;
