@@ -9,9 +9,6 @@ namespace TLH.Gameplay.Entities.Behaviours.Movement
     {
         [SerializeField] private new CircleCollider2D collider;
         public CircleCollider2D Collider => collider;
-        
-        [SerializeField] private LayerMask layersBlockingMovement;
-        public LayerMask LayersBlockingMovement => layersBlockingMovement;
 
         public RunData RunData { get; private set; }
         public DashData DashData  { get; private set; }

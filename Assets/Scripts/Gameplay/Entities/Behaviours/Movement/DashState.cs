@@ -30,7 +30,7 @@ namespace TLH.Gameplay.Entities.Behaviours.Movement
         
         private void StartDash()
         {
-            UnobstructedPlaceFinder unobstructedPlaceFinder = new(movement.LayersBlockingMovement);
+            UnobstructedPlaceFinder unobstructedPlaceFinder = new(movement.DashData.LayersBlockingDashEnd);
             Vector2 wantedPosition = (Vector2)movement.transform.position + direction * movement.DashData.Distance;
             Vector2 unobstructedPosition = unobstructedPlaceFinder.FindFurthestOnPath(movement.transform.position, wantedPosition, movement.Collider.radius);
 
