@@ -12,6 +12,7 @@ namespace TLH.Gameplay.Projectiles
         public event Action<Projectile> Deactivated;
         public event Action<Projectile> Destroying;
 
+        public LayerMask SourceLayer { get; private set; }
         public ProjectileAttackData AttackData { get; private set; }
 
         private Rigidbody2D projectilesRigidbody;
@@ -23,9 +24,12 @@ namespace TLH.Gameplay.Projectiles
             projectilesRigidbody = GetComponent<Rigidbody2D>();
         }
         
-        public void Init(ProjectileAttackData attackData)
+        public void Init(ProjectileAttackData attackData, LayerMask sourceLayer)
         {
+            SourceLayer = sourceLayer;
             AttackData = attackData;
+            
+            projectilesRigidbody.excludeLayers = projectilesRigidbody.excludeLayers.WithLayer(SourceLayer);
         }
         
         public void Shoot(Vector2 directionNormalized)

@@ -8,9 +8,15 @@ namespace TLH.Gameplay.Projectiles
 {
     public class ProjectileAttacksManager : MonoBehaviour
     {
+        private LayerMask attacksSourceLayer;
         private Dictionary<ProjectileAttackData, ObjectPool<Projectile>> poolsByAttackData = new();
         private List<Projectile> activeProjectiles = new();
 
+        public void Init(LayerMask attacksSourceLayer)
+        {
+            this.attacksSourceLayer = attacksSourceLayer;
+        }
+        
         public void RegisterHandledProjectileAttack(ProjectileAttackData attackData)
         {
             if (!poolsByAttackData.ContainsKey(attackData))
@@ -45,7 +51,7 @@ namespace TLH.Gameplay.Projectiles
             return () =>
             {
                 Projectile createdProjectile = Instantiate(attackData.ProjectilePrefab);
-                createdProjectile.Init(attackData);
+                createdProjectile.Init(attackData, attacksSourceLayer);
                 createdProjectile.Deactivated += OnProjectileDeactivated;
                 createdProjectile.Destroying += OnProjectileDestroying;
 

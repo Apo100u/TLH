@@ -15,6 +15,12 @@ namespace TLH.Gameplay.Entities.Behaviours
         
         private float remainingPrimaryAttackCooldown;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            projectileAttacksManager.Init(gameObject.layer);
+        }
+
         public void SetPrimaryAttackData(AttackData primaryAttackData)
         {
             this.primaryAttackData = primaryAttackData;
@@ -62,7 +68,7 @@ namespace TLH.Gameplay.Entities.Behaviours
         {
             if (attackData.ProjectilePrefab != null)
             {
-                Vector2 direction = (aimPointWorldPosition - transform.position).normalized;
+                Vector2 direction = (aimPointWorldPosition - projectilesSpawnPoint.position).normalized;
                 projectileAttacksManager.ShootProjectileFromAttackData(attackData, projectilesSpawnPoint.position, direction);
             }
         }

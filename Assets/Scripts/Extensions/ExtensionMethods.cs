@@ -5,7 +5,7 @@ namespace TLH.Extensions
     public static class ExtensionMethods
     {
         /// <summary>
-        /// Copies this <see cref="LayerMask"/> and add new layer to the copy.
+        /// Copies this <see cref="LayerMask"/> and adds new layer to the copy.
         /// </summary>
         public static LayerMask WithLayer(this LayerMask layerMask, int layerToAdd)
         {
