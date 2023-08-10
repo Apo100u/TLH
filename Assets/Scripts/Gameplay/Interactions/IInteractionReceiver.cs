@@ -1,6 +1,6 @@
 using TLH.Gameplay.Interactions.Types;
 
-namespace TLH.Gameplay.Interactions.Receivers
+namespace TLH.Gameplay.Interactions
 {
     public interface IInteractionReceiver<TInteraction> where TInteraction : Interaction
     {

@@ -1,7 +1,8 @@
+using TLH.Gameplay.Interactions;
 using TLH.Gameplay.Interactions.Types;
 using UnityEngine;
 
-namespace TLH.Gameplay.Interactions.Receivers
+namespace TLH.Gameplay
 {
     [RequireComponent(typeof(Interactable))]
     public class Health : MonoBehaviour, IInteractionReceiver<DamageInteraction>
