@@ -15,3 +15,6 @@ MonoBehaviour:
   distance: 3
   speed: 15
   cooldown: 0.5
+  layersBlockingDashEnd:
+    serializedVersion: 2
+    m_Bits: 64
