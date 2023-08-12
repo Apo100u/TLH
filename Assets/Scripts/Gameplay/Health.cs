@@ -8,12 +8,13 @@ namespace TLH.Gameplay
     public class Health : MonoBehaviour, IInteractionReceiver<DamageInteraction>
     {
         [SerializeField] private int maxHealth;
-
-        private int currentHealth;
+        public int MaxHealth => maxHealth;
+        
+        public int CurrentHealth { get; private set; }
 
         private void Awake()
         {
-            currentHealth = maxHealth;
+            CurrentHealth = maxHealth;
         }
 
         public void HandleInteraction(DamageInteraction interaction, InteractionInitiator initiator)
@@ -23,11 +24,11 @@ namespace TLH.Gameplay
 
         private void GetDamage(int damagePower)
         {
-            int adjustedDamage = damagePower > currentHealth
-                ? currentHealth
+            int adjustedDamage = damagePower > CurrentHealth
+                ? CurrentHealth
                 : damagePower;
 
-            currentHealth -= adjustedDamage;
+            CurrentHealth -= adjustedDamage;
         }
     }
 }

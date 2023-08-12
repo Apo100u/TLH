@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6e0297c3e86354e92e94c5d6908269, type: 3}
   m_Name: TestKnockbackInteraction
   m_EditorClassIdentifier: 
-  power: 1
+  power: 2
   multiplyExistingVelocity: 1
