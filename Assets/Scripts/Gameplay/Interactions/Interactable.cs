@@ -12,22 +12,22 @@ namespace TLH.Gameplay.Interactions
             damageInteractionReceivers = GetComponents<IInteractionReceiver<DamageInteraction>>();
         }
 
-        public void HandleInteraction<T>(T interaction) where T : Interaction
+        public void HandleInteraction<T>(T interaction, InteractionInitiator initiator) where T : Interaction
         {
             switch (interaction)
             {
-                case DamageInteraction damageInteraction: SendInteractionToReceivers(damageInteraction, damageInteractionReceivers); break;
+                case DamageInteraction damageInteraction: SendInteractionToReceivers(damageInteraction, initiator, damageInteractionReceivers); break;
                 
                 default: Debug.LogError($"{nameof(Interactable)} doesn't implement handling interaction type {interaction.GetType()}." +
                                         "Most likely it should be added."); break;
             }
         }
 
-        private void SendInteractionToReceivers<T>(T interaction, IInteractionReceiver<T>[] receivers) where T : Interaction
+        private void SendInteractionToReceivers<T>(T interaction, InteractionInitiator initiator, IInteractionReceiver<T>[] receivers) where T : Interaction
         {
             for (int i = 0; i < receivers.Length; i++)
             {
-                receivers[i].HandleInteraction(interaction);
+                receivers[i].HandleInteraction(interaction, initiator);
             }
         }
     }

@@ -290,6 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd95a0f4f1a98b4d98e4c37cc5038a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initiateInteractionsOnTriggerEnter: 1
   interactions: []
 --- !u!58 &4907822897555506100
 CircleCollider2D:

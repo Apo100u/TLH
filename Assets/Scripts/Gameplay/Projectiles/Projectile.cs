@@ -7,7 +7,7 @@ using UnityEngine;
 namespace TLH.Gameplay.Projectiles
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Projectile : InteractionTrigger
+    public class Projectile : InteractionInitiator
     {
         public event Action<Projectile> Deactivated;
         public event Action<Projectile> Destroying;

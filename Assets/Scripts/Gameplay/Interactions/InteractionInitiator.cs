@@ -4,8 +4,9 @@ using UnityEngine;
 
 namespace TLH.Gameplay.Interactions
 {
-    public class InteractionTrigger : MonoBehaviour
+    public class InteractionInitiator : MonoBehaviour
     {
+        [SerializeField] private bool initiateInteractionsOnTriggerEnter;
         [SerializeField] private List<Interaction> interactions;
 
         public void AddInteraction(Interaction interaction)
@@ -15,11 +16,14 @@ namespace TLH.Gameplay.Interactions
         
         protected virtual void OnTriggerEnter2D(Collider2D collider)
         {
-            Interactable interactable = collider.GetComponentInParent<Interactable>();
-
-            if (interactable != null)
+            if (initiateInteractionsOnTriggerEnter)
             {
-                InteractWith(interactable);
+                Interactable interactable = collider.GetComponentInParent<Interactable>();
+
+                if (interactable != null)
+                {
+                    InteractWith(interactable);
+                }
             }
         }
 
@@ -27,7 +31,7 @@ namespace TLH.Gameplay.Interactions
         {
             for (int i = 0; i < interactions.Count; i++)
             {
-                interactable.HandleInteraction(interactions[i]);
+                interactable.HandleInteraction(interactions[i], this);
             }
         }
     }

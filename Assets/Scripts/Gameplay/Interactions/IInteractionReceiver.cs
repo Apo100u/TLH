@@ -4,6 +4,6 @@ namespace TLH.Gameplay.Interactions
 {
     public interface IInteractionReceiver<TInteraction> where TInteraction : Interaction
     {
-        public void HandleInteraction(TInteraction interaction);
+        public void HandleInteraction(TInteraction interaction, InteractionInitiator initiator);
     }
 }

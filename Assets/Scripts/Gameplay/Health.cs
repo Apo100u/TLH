@@ -16,7 +16,7 @@ namespace TLH.Gameplay
             currentHealth = maxHealth;
         }
 
-        public void HandleInteraction(DamageInteraction interaction)
+        public void HandleInteraction(DamageInteraction interaction, InteractionInitiator initiator)
         {
             GetDamage(interaction.DamagePower);
         }
