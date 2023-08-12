@@ -2,12 +2,14 @@ using System;
 using TLH.Extensions;
 using TLH.Gameplay.Entities.ActionData;
 using TLH.Gameplay.Interactions;
+using TLH.Gameplay.Interactions.Types;
 using UnityEngine;
 
 namespace TLH.Gameplay.Projectiles
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Projectile : InteractionInitiator
+    [RequireComponent(typeof(Interactable))]
+    public class Projectile : InteractionInitiator, IInteractionReceiver<KnockbackInteraction>
     {
         public event Action<Projectile> Deactivated;
         public event Action<Projectile> Destroying;
@@ -30,6 +32,17 @@ namespace TLH.Gameplay.Projectiles
             AttackData = attackData;
             
             projectilesRigidbody.excludeLayers = projectilesRigidbody.excludeLayers.WithLayer(SourceLayer);
+        }
+        
+        public void HandleInteraction(KnockbackInteraction interaction, InteractionInitiator initiator)
+        {
+            Vector2 directionNormalized = (transform.position - initiator.transform.position).normalized;
+
+            float speed = interaction.MultiplyExistingVelocity
+                ? projectilesRigidbody.velocity.magnitude * interaction.Power
+                : interaction.Power;
+
+            projectilesRigidbody.velocity = directionNormalized * speed;
         }
         
         public void Shoot(Vector2 directionNormalized)
