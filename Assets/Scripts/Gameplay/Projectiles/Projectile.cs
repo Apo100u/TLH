@@ -10,7 +10,7 @@ namespace TLH.Gameplay.Projectiles
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Interactable))]
-    public class Projectile : InteractionInitiator, IInteractionReceiver<KnockbackInteraction>
+    public class Projectile : InteractionInitiator, IInteractionReceiver<KnockbackInteraction>, IInteractionReceiver<DestructionInteraction>
     {
         public event Action<Projectile> Deactivated;
         public event Action<Projectile> Destroying;
@@ -47,6 +47,14 @@ namespace TLH.Gameplay.Projectiles
             if (initiator is Projectile projectile)
             {
                 SetSource(projectile.currentSource);
+            }
+        }
+        
+        public void HandleInteraction(DestructionInteraction interaction, InteractionInitiator initiator)
+        {
+            if (interaction.LayersToDestroy.ContainsLayer(gameObject.layer))
+            {
+                Deactivate();
             }
         }
         
