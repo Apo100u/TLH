@@ -20,7 +20,7 @@ namespace TLH.Gameplay.Entities.Behaviours
         public void Init(ProjectilesPool projectilesPool)
         {
             this.projectilesPool = projectilesPool;
-            projectileAttacksManager.Init(gameObject.layer, projectilesPool);
+            projectileAttacksManager.Init(entity, projectilesPool);
         }
 
         public void SetPrimaryAttackData(AttackData primaryAttackData)

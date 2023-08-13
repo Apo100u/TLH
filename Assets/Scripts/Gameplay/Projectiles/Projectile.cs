@@ -1,5 +1,6 @@
 using System;
 using TLH.Extensions;
+using TLH.Gameplay.Entities;
 using TLH.Gameplay.Entities.ActionData;
 using TLH.Gameplay.Interactions;
 using TLH.Gameplay.Interactions.Types;
@@ -18,8 +19,9 @@ namespace TLH.Gameplay.Projectiles
 
         private Rigidbody2D projectilesRigidbody;
         private LayerMask originalExcludeLayers;
-        private float shootTime;
+        private Entity currentSource;
         private bool isActive;
+        private float shootTime;
 
         private void Awake()
         {
@@ -43,17 +45,15 @@ namespace TLH.Gameplay.Projectiles
             projectilesRigidbody.velocity = directionNormalized * speed;
         }
         
-        public void Shoot(Vector2 directionNormalized, LayerMask? additionalLayersToExclude = null)
+        public void Shoot(Vector2 directionNormalized, Entity source)
         {
+            currentSource = source;
             isActive = true;
+            shootTime = Time.time;
             gameObject.SetActive(true);
             transform.up = directionNormalized;
+            projectilesRigidbody.excludeLayers = originalExcludeLayers.WithLayer(source.gameObject.layer);
             projectilesRigidbody.velocity = directionNormalized * AttackData.Speed;
-            shootTime = Time.time;
-            
-            projectilesRigidbody.excludeLayers = additionalLayersToExclude == null
-                ? originalExcludeLayers
-                : originalExcludeLayers.WithLayer((LayerMask) additionalLayersToExclude);
         }
 
         public void OnUpdate()
@@ -66,12 +66,21 @@ namespace TLH.Gameplay.Projectiles
 
         protected override void OnTriggerEnter2D(Collider2D collider)
         {
-            base.OnTriggerEnter2D(collider);
-
-            if (isActive)
+            if (!IsTriggerEnterIgnoredWithCollider(collider))
             {
-                HandleCollision(collider);
+                base.OnTriggerEnter2D(collider);
+
+                if (isActive)
+                {
+                    HandleCollision(collider);
+                }
             }
+        }
+
+        private bool IsTriggerEnterIgnoredWithCollider(Collider2D colliderEnteringTrigger)
+        {
+            Projectile projectile = colliderEnteringTrigger.GetComponentInParent<Projectile>();
+            return projectile != null && projectile.currentSource == currentSource;
         }
 
         private void HandleCollision(Collider2D collider)

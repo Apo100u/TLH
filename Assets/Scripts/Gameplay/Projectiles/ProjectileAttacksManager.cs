@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TLH.Gameplay.Entities;
 using TLH.Gameplay.Entities.ActionData;
 using TLH.Gameplay.ObjectPools;
 using UnityEngine;
@@ -7,13 +8,13 @@ namespace TLH.Gameplay.Projectiles
 {
     public class ProjectileAttacksManager : MonoBehaviour
     {
-        private LayerMask attacksSourceLayer;
+        private Entity attacksSource;
         private ProjectilesPool projectilesPool;
         private List<Projectile> activeProjectiles = new();
 
-        public void Init(LayerMask attacksSourceLayer, ProjectilesPool projectilesPool)
+        public void Init(Entity attacksSource, ProjectilesPool projectilesPool)
         {
-            this.attacksSourceLayer = attacksSourceLayer;
+            this.attacksSource = attacksSource;
             this.projectilesPool = projectilesPool;
         }
 
@@ -34,7 +35,7 @@ namespace TLH.Gameplay.Projectiles
             
             activeProjectiles.Add(projectile);
             projectile.transform.position = spawnPoint;
-            projectile.Shoot(directionNormalized, attacksSourceLayer);
+            projectile.Shoot(directionNormalized, attacksSource);
         }
 
         private void OnProjectileDeactivated(Projectile projectile)
