@@ -16,8 +16,8 @@ namespace TLH.Gameplay.Entities.ActionData
         [SerializeField][Min(0f)] private float lifeTimeInSec = 10f;
         public float LifeTimeInSec => lifeTimeInSec;
         
-        [Tooltip("Layers on which this object will be destroyed. It will pierce other layers and still interact with them if possible.")]
-        [SerializeField] private LayerMask layersToDestroyOn;
-        public LayerMask LayersToDestroyOn => layersToDestroyOn;
+        [Tooltip("The projectile will go through these layers and still interact with them if there is an interaction.")]
+        [SerializeField] private LayerMask layersToPierce;
+        public LayerMask LayersToPierce => layersToPierce;
     }
 }

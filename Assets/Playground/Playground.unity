@@ -340,7 +340,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b5f66fb082e946469da71e04d6fe421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OMEGA_TEST: 0
   combat: {fileID: 177371379}
   aimTarget: {fileID: 293519231}
   pools: {fileID: 1546155542}

@@ -76,7 +76,7 @@ namespace TLH.Gameplay.Projectiles
 
         private void HandleCollision(Collider2D collider)
         {
-            if (AttackData.LayersToDestroyOn.ContainsLayer(collider.gameObject.layer))
+            if (!AttackData.LayersToPierce.ContainsLayer(collider.gameObject.layer))
             {
                 Deactivate();
             }
