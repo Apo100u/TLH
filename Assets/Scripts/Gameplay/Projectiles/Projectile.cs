@@ -42,20 +42,35 @@ namespace TLH.Gameplay.Projectiles
                 ? projectilesRigidbody.velocity.magnitude * interaction.Power
                 : interaction.Power;
 
-            projectilesRigidbody.velocity = directionNormalized * speed;
+            SetVelocity(directionNormalized, speed);
+            
+            if (initiator is Projectile projectile)
+            {
+                SetSource(projectile.currentSource);
+            }
         }
         
         public void Shoot(Vector2 directionNormalized, Entity source)
         {
-            currentSource = source;
             isActive = true;
             shootTime = Time.time;
             gameObject.SetActive(true);
-            transform.up = directionNormalized;
-            projectilesRigidbody.excludeLayers = originalExcludeLayers.WithLayer(source.gameObject.layer);
-            projectilesRigidbody.velocity = directionNormalized * AttackData.Speed;
+            SetSource(source);
+            SetVelocity(directionNormalized, AttackData.Speed);
         }
 
+        private void SetSource(Entity source)
+        {
+            currentSource = source;
+            projectilesRigidbody.excludeLayers = originalExcludeLayers.WithLayer(source.gameObject.layer);
+        }
+
+        private void SetVelocity(Vector2 directionNormalized, float speed)
+        {
+            projectilesRigidbody.velocity = directionNormalized * speed;
+            transform.up = directionNormalized;
+        }
+        
         public void OnUpdate()
         {
             if (Time.time > shootTime + AttackData.LifeTimeInSec)

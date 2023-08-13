@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactions:
   - {fileID: 11400000, guid: 893ef06bdc718124c9a5b1086662ca78, type: 2}
+  - {fileID: 11400000, guid: 5c1288bbddd04fb4e9458be2c0dd4ec8, type: 2}
   cooldown: 0.3
   projectilePrefab: {fileID: 5098003049248277068, guid: b9116f547013570439bbc4b96f7501d7, type: 3}
   speed: 10
