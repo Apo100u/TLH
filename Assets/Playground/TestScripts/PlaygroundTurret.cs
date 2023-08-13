@@ -1,5 +1,6 @@
 using TLH.Gameplay.Entities.ActionData;
 using TLH.Gameplay.Entities.Behaviours;
+using TLH.Gameplay.ObjectPools;
 using UnityEngine;
 
 namespace TLH.Playground
@@ -9,10 +10,12 @@ namespace TLH.Playground
     {
         [SerializeField] private Combat combat;
         [SerializeField] private Transform aimTarget;
+        [SerializeField] private Pools pools;
         [SerializeField] private ProjectileAttackData attackData;
         
         private void Awake()
         {
+            combat.Init(pools.Projectiles);
             combat.SetPrimaryAttackData(attackData);
         }
 

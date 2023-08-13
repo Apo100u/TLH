@@ -1,6 +1,7 @@
 using TLH.Gameplay.Entities.ActionData;
 using TLH.Gameplay.Entities.Behaviours;
 using TLH.Gameplay.Entities.Behaviours.Movement;
+using TLH.Gameplay.ObjectPools;
 using TLH.Input;
 using UnityEngine;
 
@@ -10,7 +11,6 @@ namespace TLH.Gameplay.Entities
     [RequireComponent(typeof(Combat))]
     public class Player : Entity
     {
-        
         [Header("Default Actions")]
         [SerializeField] private RunData defaultRunData;
         [SerializeField] private DashData defaultDashData;
@@ -18,13 +18,15 @@ namespace TLH.Gameplay.Entities
 
         private Camera mainCamera;
         private InputReader inputReader;
+        private Pools pools;
         private Movement movement;
         private Combat combat;
 
-        public void Init(InputReader inputReader, Camera mainCamera)
+        public void Init(InputReader inputReader, Camera mainCamera, Pools pools)
         {
-            this.mainCamera = Camera.main;;
+            this.mainCamera = mainCamera;
             this.inputReader = inputReader;
+            this.pools = pools;
             SetupBehaviours();
         }
 
@@ -35,6 +37,7 @@ namespace TLH.Gameplay.Entities
             movement.SetDashData(defaultDashData);
 
             combat = GetComponent<Combat>();
+            combat.Init(pools.Projectiles);
             combat.SetPrimaryAttackData(defaultAttackData);
         }
 

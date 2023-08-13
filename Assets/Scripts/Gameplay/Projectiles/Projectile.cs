@@ -14,10 +14,10 @@ namespace TLH.Gameplay.Projectiles
         public event Action<Projectile> Deactivated;
         public event Action<Projectile> Destroying;
 
-        public LayerMask SourceLayer { get; private set; }
         public ProjectileAttackData AttackData { get; private set; }
 
         private Rigidbody2D projectilesRigidbody;
+        private LayerMask originalExcludeLayers;
         private float shootTime;
         private bool isActive;
 
@@ -26,12 +26,10 @@ namespace TLH.Gameplay.Projectiles
             projectilesRigidbody = GetComponent<Rigidbody2D>();
         }
         
-        public void Init(ProjectileAttackData attackData, LayerMask sourceLayer)
+        public void Init(ProjectileAttackData attackData)
         {
-            SourceLayer = sourceLayer;
             AttackData = attackData;
-            
-            projectilesRigidbody.excludeLayers = projectilesRigidbody.excludeLayers.WithLayer(SourceLayer);
+            originalExcludeLayers = projectilesRigidbody.excludeLayers;
         }
         
         public void HandleInteraction(KnockbackInteraction interaction, InteractionInitiator initiator)
@@ -45,15 +43,19 @@ namespace TLH.Gameplay.Projectiles
             projectilesRigidbody.velocity = directionNormalized * speed;
         }
         
-        public void Shoot(Vector2 directionNormalized)
+        public void Shoot(Vector2 directionNormalized, LayerMask? additionalLayersToExclude = null)
         {
             isActive = true;
             gameObject.SetActive(true);
             transform.up = directionNormalized;
             projectilesRigidbody.velocity = directionNormalized * AttackData.Speed;
             shootTime = Time.time;
+            
+            projectilesRigidbody.excludeLayers = additionalLayersToExclude == null
+                ? originalExcludeLayers
+                : originalExcludeLayers.WithLayer((LayerMask) additionalLayersToExclude);
         }
-        
+
         public void OnUpdate()
         {
             if (Time.time > shootTime + AttackData.LifeTimeInSec)

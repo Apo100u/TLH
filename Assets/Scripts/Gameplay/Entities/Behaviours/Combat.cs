@@ -1,4 +1,5 @@
 using TLH.Gameplay.Entities.ActionData;
+using TLH.Gameplay.ObjectPools;
 using TLH.Gameplay.Projectiles;
 using UnityEngine;
 
@@ -12,13 +13,14 @@ namespace TLH.Gameplay.Entities.Behaviours
 
         private AttackData primaryAttackData;
         private Vector3 aimPointWorldPosition;
+        private ProjectilesPool projectilesPool;
         
         private float remainingPrimaryAttackCooldown;
 
-        protected override void Awake()
+        public void Init(ProjectilesPool projectilesPool)
         {
-            base.Awake();
-            projectileAttacksManager.Init(gameObject.layer);
+            this.projectilesPool = projectilesPool;
+            projectileAttacksManager.Init(gameObject.layer, projectilesPool);
         }
 
         public void SetPrimaryAttackData(AttackData primaryAttackData)
@@ -77,7 +79,7 @@ namespace TLH.Gameplay.Entities.Behaviours
         {
             if (attackData is ProjectileAttackData projectileAttackData)
             {
-                projectileAttacksManager.RegisterHandledProjectileAttack(projectileAttackData);
+                projectilesPool.RegisterHandledProjectileAttack(projectileAttackData);
             }
         }
 

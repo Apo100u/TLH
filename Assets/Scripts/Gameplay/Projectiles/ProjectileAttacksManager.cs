@@ -1,34 +1,20 @@
-using System;
 using System.Collections.Generic;
 using TLH.Gameplay.Entities.ActionData;
+using TLH.Gameplay.ObjectPools;
 using UnityEngine;
-using UnityEngine.Pool;
 
 namespace TLH.Gameplay.Projectiles
 {
     public class ProjectileAttacksManager : MonoBehaviour
     {
         private LayerMask attacksSourceLayer;
-        private Dictionary<ProjectileAttackData, ObjectPool<Projectile>> poolsByAttackData = new();
+        private ProjectilesPool projectilesPool;
         private List<Projectile> activeProjectiles = new();
 
-        public void Init(LayerMask attacksSourceLayer)
+        public void Init(LayerMask attacksSourceLayer, ProjectilesPool projectilesPool)
         {
             this.attacksSourceLayer = attacksSourceLayer;
-        }
-        
-        public void RegisterHandledProjectileAttack(ProjectileAttackData attackData)
-        {
-            if (!poolsByAttackData.ContainsKey(attackData))
-            {
-                ObjectPool<Projectile> pool = new(
-                    GetCreateProjectileFunc(attackData),
-                    OnProjectileTakenFromPool,
-                    OnProjectileReturnedToPool,
-                    OnProjectileSurpassedPoolCapacity);
-
-                poolsByAttackData.Add(attackData, pool);
-            }
+            this.projectilesPool = projectilesPool;
         }
 
         private void Update()
@@ -41,51 +27,25 @@ namespace TLH.Gameplay.Projectiles
         
         public void ShootProjectileFromAttackData(ProjectileAttackData attackData, Vector3 spawnPoint, Vector2 directionNormalized)
         {
-            Projectile projectile = poolsByAttackData[attackData].Get();
-            projectile.transform.position = spawnPoint;
-            projectile.Shoot(directionNormalized);
-        }
-        
-        private Func<Projectile> GetCreateProjectileFunc(ProjectileAttackData attackData)
-        {
-            return () =>
-            {
-                Projectile createdProjectile = Instantiate(attackData.ProjectilePrefab);
-                createdProjectile.Init(attackData, attacksSourceLayer);
-                createdProjectile.Deactivated += OnProjectileDeactivated;
-                createdProjectile.Destroying += OnProjectileDestroying;
-
-                for (int i = 0; i < attackData.Interactions.Length; i++)
-                {
-                    createdProjectile.AddInteraction(attackData.Interactions[i]);
-                }
-                
-                return createdProjectile;
-            };
-        }
-        
-        private void OnProjectileTakenFromPool(Projectile projectile)
-        {
+            Projectile projectile = projectilesPool[attackData].Get();
+            
+            projectile.Deactivated += OnProjectileDeactivated;
+            projectile.Destroying += OnProjectileDestroying;
+            
             activeProjectiles.Add(projectile);
-        }
-
-        private void OnProjectileReturnedToPool(Projectile projectile)
-        {
-            activeProjectiles.Remove(projectile);
-        }
-
-        private void OnProjectileSurpassedPoolCapacity(Projectile projectile)
-        {
-            projectile.Destroy();
+            projectile.transform.position = spawnPoint;
+            projectile.Shoot(directionNormalized, attacksSourceLayer);
         }
 
         private void OnProjectileDeactivated(Projectile projectile)
         {
-            poolsByAttackData[projectile.AttackData].Release(projectile);
+            projectile.Deactivated -= OnProjectileDeactivated;
+            activeProjectiles.Remove(projectile);
         }
-        
+
         private void OnProjectileDestroying(Projectile projectile)
         {
+            projectile.Destroying -= OnProjectileDestroying;
             activeProjectiles.Remove(projectile);
         }
     }
