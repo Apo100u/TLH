@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a98df65c33b194640a0b6d975b8a72b9, type: 3}
   m_Name: TestMeleeAttackData
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4098279790977262069, guid: 2c6ef455fb347ce468cfe1258c6df591, type: 3}
-  speed: 0
+  prefab: {fileID: 4654962871616742592, guid: 5ae5e295c19563242922158d6c6f6049, type: 3}
+  speed: 10
   cooldown: 0.1
   lifeTimeInSec: 0.1
   attachToEntity: 1

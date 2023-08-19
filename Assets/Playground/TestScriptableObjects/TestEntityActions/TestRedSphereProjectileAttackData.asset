@@ -16,8 +16,10 @@ MonoBehaviour:
   speed: 5
   cooldown: 0.5
   lifeTimeInSec: 5
+  attachToEntity: 0
+  updatePointingDirection: 0
   layersToPierce:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 1152
   interactions:
   - {fileID: 11400000, guid: 893ef06bdc718124c9a5b1086662ca78, type: 2}
