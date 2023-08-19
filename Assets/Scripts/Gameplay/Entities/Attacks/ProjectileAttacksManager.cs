@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using TLH.Gameplay.Entities;
 using TLH.Gameplay.Entities.ActionData;
 using TLH.Gameplay.ObjectPools;
 using UnityEngine;
 
-namespace TLH.Gameplay.Projectiles
+namespace TLH.Gameplay.Entities.Attacks
 {
     public class ProjectileAttacksManager : MonoBehaviour
     {

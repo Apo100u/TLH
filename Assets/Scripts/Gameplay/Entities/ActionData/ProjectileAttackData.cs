@@ -1,4 +1,4 @@
-using TLH.Gameplay.Projectiles;
+using TLH.Gameplay.Entities.Attacks;
 using UnityEngine;
 
 namespace TLH.Gameplay.Entities.ActionData

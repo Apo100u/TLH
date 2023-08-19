@@ -1,6 +1,6 @@
 using TLH.Gameplay.Entities.ActionData;
 using TLH.Gameplay.ObjectPools;
-using TLH.Gameplay.Projectiles;
+using TLH.Gameplay.Entities.Attacks;
 using UnityEngine;
 
 namespace TLH.Gameplay.Entities.Behaviours

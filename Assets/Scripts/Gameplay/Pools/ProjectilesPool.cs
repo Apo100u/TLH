@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TLH.Gameplay.Entities.ActionData;
-using TLH.Gameplay.Projectiles;
+using TLH.Gameplay.Entities.Attacks;
 using UnityEngine.Pool;
 
 namespace TLH.Gameplay.ObjectPools

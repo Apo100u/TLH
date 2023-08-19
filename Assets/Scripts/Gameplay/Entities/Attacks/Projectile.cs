@@ -1,12 +1,11 @@
 using System;
 using TLH.Extensions;
-using TLH.Gameplay.Entities;
 using TLH.Gameplay.Entities.ActionData;
 using TLH.Gameplay.Interactions;
 using TLH.Gameplay.Interactions.Types;
 using UnityEngine;
 
-namespace TLH.Gameplay.Projectiles
+namespace TLH.Gameplay.Entities.Attacks
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Interactable))]
