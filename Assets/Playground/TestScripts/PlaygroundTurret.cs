@@ -1,6 +1,6 @@
 using TLH.Gameplay.Entities;
 using TLH.Gameplay.Entities.ActionData;
-using TLH.Gameplay.Entities.Behaviours;
+using TLH.Gameplay.Entities.Behaviours.Combat;
 using TLH.Gameplay.ObjectPools;
 using UnityEngine;
 
@@ -10,6 +10,7 @@ namespace TLH.Playground
     public class PlaygroundTurret : Entity
     {
         [SerializeField] private Combat combat;
+        [SerializeField] private Transform attackSpawnPoint;
         [SerializeField] private Transform aimTarget;
         [SerializeField] private Pools pools;
         [SerializeField] private AttackData attackData;
@@ -17,7 +18,7 @@ namespace TLH.Playground
         private void Awake()
         {
             combat.Init(pools.Attacks);
-            combat.SetPrimaryAttackData(attackData);
+            combat.SetPrimaryAttackData(attackData, attackSpawnPoint);
         }
 
         private void Update()

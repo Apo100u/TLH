@@ -33,7 +33,7 @@ namespace TLH.Gameplay.Entities.Attacks
             }
         }
         
-        public void UseAttackFromAttackData(AttackData attackData, Transform spawnPoint, Vector2 directionNormalized)
+        public void UseAttackFromAttackData(AttackData attackData, Vector3 spawnPoint, Vector2 directionNormalized)
         {
             EntityAttack attack = attacksPool[attackData].Get();
             
@@ -41,7 +41,7 @@ namespace TLH.Gameplay.Entities.Attacks
             attack.Destroying += OnAttackDestroying;
             
             activeAttacks.Add(attack);
-            attack.transform.position = spawnPoint.position;
+            attack.transform.position = spawnPoint;
             attack.Activate(directionNormalized, attacksSource);
         }
 

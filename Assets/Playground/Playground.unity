@@ -341,6 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combat: {fileID: 177371379}
+  attackSpawnPoint: {fileID: 2004513107}
   aimTarget: {fileID: 293519231}
   pools: {fileID: 1546155542}
   attackData: {fileID: 11400000, guid: ff1d3137eedcb634da57ade5ab79de92, type: 2}
@@ -1597,6 +1598,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &2004513107 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1720116073072901425, guid: e2815d2f61a6dab418e3c698727f51db, type: 3}
+  m_PrefabInstance: {fileID: 177371377}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2052755155
 GameObject:
   m_ObjectHideFlags: 0

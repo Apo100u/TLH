@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6350250235400317198}
   - component: {fileID: 3642453827813011097}
   m_Layer: 9
-  m_Name: ProjectileAttacksManager
+  m_Name: AttacksManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1720116073072901425}
   m_Layer: 9
-  m_Name: ProjectilesSpawnPoint
+  m_Name: AttacksSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -187,7 +187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78300d7a9d688bf45bfb5ba2bf583c97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilesSpawnPoint: {fileID: 1720116073072901425}
   attacksManager: {fileID: 3642453827813011097}
 --- !u!50 &621455391121439688
 Rigidbody2D:

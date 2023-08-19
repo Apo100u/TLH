@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1237295369629763365
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2823858544373033919}
+  m_Layer: 8
+  m_Name: SpawnPointLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2823858544373033919
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237295369629763365}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.25, y: 0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3280769142167388418}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6486203488081600761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2727461191912477183}
+  m_Layer: 8
+  m_Name: SpawnPointRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2727461191912477183
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6486203488081600761}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.25, y: 0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3280769142167388418}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4204310721879637043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12,6 +74,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3118809595830638699, guid: e2815d2f61a6dab418e3c698727f51db, type: 3}
+      propertyPath: objectsToRotateTowardsAimPoint.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3118809595830638699, guid: e2815d2f61a6dab418e3c698727f51db, type: 3}
+      propertyPath: objectsToRotateTowardsAimPoint.Array.data[0]
+      value: 
+      objectReference: {fileID: 3280769142167388418}
     - target: {fileID: 3873136469147460781, guid: e2815d2f61a6dab418e3c698727f51db, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -19,6 +89,10 @@ PrefabInstance:
     - target: {fileID: 4009572568172178918, guid: e2815d2f61a6dab418e3c698727f51db, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4086968656506443790, guid: e2815d2f61a6dab418e3c698727f51db, type: 3}
+      propertyPath: m_Name
+      value: MeleeAttacksSpawnPoints
       objectReference: {fileID: 0}
     - target: {fileID: 4086968656506443790, guid: e2815d2f61a6dab418e3c698727f51db, type: 3}
       propertyPath: m_Layer
@@ -82,12 +156,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1720116073072901425, guid: e2815d2f61a6dab418e3c698727f51db, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2823858544373033919}
+    - targetCorrespondingSourceObject: {fileID: 1720116073072901425, guid: e2815d2f61a6dab418e3c698727f51db, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2727461191912477183}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6520846082445005514, guid: e2815d2f61a6dab418e3c698727f51db, type: 3}
       insertIndex: 1
       addedObject: {fileID: 1957105683564356104}
   m_SourcePrefab: {fileID: 100100000, guid: e2815d2f61a6dab418e3c698727f51db, type: 3}
+--- !u!4 &3280769142167388418 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1720116073072901425, guid: e2815d2f61a6dab418e3c698727f51db, type: 3}
+  m_PrefabInstance: {fileID: 4204310721879637043}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6928230187568049913 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6520846082445005514, guid: e2815d2f61a6dab418e3c698727f51db, type: 3}
@@ -107,4 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultRunData: {fileID: 11400000, guid: 4bd52abad49d32c48bb45d144ecb9ab9, type: 2}
   defaultDashData: {fileID: 11400000, guid: bb983894b6c882b48abb147e8932c6aa, type: 2}
-  defaultAttackData: {fileID: 11400000, guid: 28bd362bb42e19b41be29095d3950467, type: 2}
+  defaultPrimaryAttackData: {fileID: 11400000, guid: e155a903d977e1b47a01ecdfe0673eae, type: 2}
+  primaryAttackSpawnPoints:
+  - {fileID: 2823858544373033919}
+  - {fileID: 2727461191912477183}

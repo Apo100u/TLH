@@ -1,5 +1,5 @@
 using TLH.Gameplay.Entities.ActionData;
-using TLH.Gameplay.Entities.Behaviours;
+using TLH.Gameplay.Entities.Behaviours.Combat;
 using TLH.Gameplay.Entities.Behaviours.Movement;
 using TLH.Gameplay.ObjectPools;
 using TLH.Input;
@@ -14,8 +14,11 @@ namespace TLH.Gameplay.Entities
         [Header("Default Actions")]
         [SerializeField] private RunData defaultRunData;
         [SerializeField] private DashData defaultDashData;
-        [SerializeField] private AttackData defaultAttackData;
+        [SerializeField] private AttackData defaultPrimaryAttackData;
 
+        [Header("Spawn Points")]
+        [SerializeField] private Transform[] primaryAttackSpawnPoints;
+        
         private Camera mainCamera;
         private InputReader inputReader;
         private Pools pools;
@@ -38,7 +41,7 @@ namespace TLH.Gameplay.Entities
 
             combat = GetComponent<Combat>();
             combat.Init(pools.Attacks);
-            combat.SetPrimaryAttackData(defaultAttackData);
+            combat.SetPrimaryAttackData(defaultPrimaryAttackData, primaryAttackSpawnPoints);
         }
 
         private void Update()
