@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5623636520891619480, guid: 2c6ef455fb347ce468cfe1258c6df591, type: 3}
       propertyPath: m_Name
-      value: TestMeleeAttackRight Variant
+      value: TestMeleeAttack
       objectReference: {fileID: 0}
     - target: {fileID: 6460164744025849307, guid: 2c6ef455fb347ce468cfe1258c6df591, type: 3}
       propertyPath: m_LocalPosition.x
