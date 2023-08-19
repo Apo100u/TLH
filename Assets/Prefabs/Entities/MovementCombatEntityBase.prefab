@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilesSpawnPoint: {fileID: 1720116073072901425}
-  projectileAttacksManager: {fileID: 3642453827813011097}
+  attacksManager: {fileID: 3642453827813011097}
 --- !u!50 &621455391121439688
 Rigidbody2D:
   serializedVersion: 4

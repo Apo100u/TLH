@@ -16,7 +16,7 @@ namespace TLH.Playground
         
         private void Awake()
         {
-            combat.Init(pools.Projectiles);
+            combat.Init(pools.Attacks);
             combat.SetPrimaryAttackData(attackData);
         }
 

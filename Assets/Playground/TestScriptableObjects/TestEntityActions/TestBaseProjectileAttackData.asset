@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bea96600b34fd243a6c9a63d8cfccde, type: 3}
   m_Name: TestBaseProjectileAttackData
   m_EditorClassIdentifier: 
-  interactions:
-  - {fileID: 11400000, guid: 893ef06bdc718124c9a5b1086662ca78, type: 2}
-  - {fileID: 11400000, guid: 5c1288bbddd04fb4e9458be2c0dd4ec8, type: 2}
-  cooldown: 0.3
-  projectilePrefab: {fileID: 5098003049248277068, guid: b9116f547013570439bbc4b96f7501d7, type: 3}
+  prefab: {fileID: 5098003049248277068, guid: b9116f547013570439bbc4b96f7501d7, type: 3}
   speed: 10
+  cooldown: 0.3
   lifeTimeInSec: 5
   layersToPierce:
     serializedVersion: 2
     m_Bits: 128
+  interactions:
+  - {fileID: 11400000, guid: 893ef06bdc718124c9a5b1086662ca78, type: 2}
+  - {fileID: 11400000, guid: 5c1288bbddd04fb4e9458be2c0dd4ec8, type: 2}

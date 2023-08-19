@@ -9,18 +9,18 @@ namespace TLH.Gameplay.Entities.Behaviours
     {
         [Header("Projectiles")]
         [SerializeField] private Transform projectilesSpawnPoint;
-        [SerializeField] private ProjectileAttacksManager projectileAttacksManager;
+        [SerializeField] private AttacksManager attacksManager;
 
         private AttackData primaryAttackData;
         private Vector3 aimPointWorldPosition;
-        private ProjectilesPool projectilesPool;
+        private AttacksPool attacksPool;
         
         private float remainingPrimaryAttackCooldown;
 
-        public void Init(ProjectilesPool projectilesPool)
+        public void Init(AttacksPool attacksPool)
         {
-            this.projectilesPool = projectilesPool;
-            projectileAttacksManager.Init(entity, projectilesPool);
+            this.attacksPool = attacksPool;
+            attacksManager.Init(entity, attacksPool);
         }
 
         public void SetPrimaryAttackData(AttackData primaryAttackData)
@@ -56,22 +56,17 @@ namespace TLH.Gameplay.Entities.Behaviours
         {
             if (CanPerformPrimaryAttack())
             {
-                switch (primaryAttackData)
-                {
-                    case ProjectileAttackData projectileAttackData: PerformProjectileAttack(projectileAttackData); break;
-                    default: Debug.LogError($"{gameObject.name} tried to perform unhandled type of attack.", this); break;
-                }
-
+                PerformAttack(primaryAttackData);
                 remainingPrimaryAttackCooldown = primaryAttackData.Cooldown;
             }
         }
 
-        private void PerformProjectileAttack(ProjectileAttackData attackData)
+        private void PerformAttack(AttackData attackData)
         {
-            if (attackData.ProjectilePrefab != null)
+            if (attackData.Prefab != null)
             {
                 Vector2 direction = (aimPointWorldPosition - projectilesSpawnPoint.position).normalized;
-                projectileAttacksManager.ShootProjectileFromAttackData(attackData, projectilesSpawnPoint.position, direction);
+                attacksManager.UseAttackFromAttackData(attackData, projectilesSpawnPoint, direction);
             }
         }
 
@@ -79,7 +74,7 @@ namespace TLH.Gameplay.Entities.Behaviours
         {
             if (attackData is ProjectileAttackData projectileAttackData)
             {
-                projectilesPool.RegisterHandledProjectileAttack(projectileAttackData);
+                attacksPool.RegisterHandledAttack(projectileAttackData);
             }
         }
 

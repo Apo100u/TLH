@@ -37,7 +37,7 @@ namespace TLH.Gameplay.Entities
             movement.SetDashData(defaultDashData);
 
             combat = GetComponent<Combat>();
-            combat.Init(pools.Projectiles);
+            combat.Init(pools.Attacks);
             combat.SetPrimaryAttackData(defaultAttackData);
         }
 
