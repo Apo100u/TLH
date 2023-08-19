@@ -6,7 +6,8 @@ using UnityEngine;
 
 namespace TLH.Gameplay.Entities.Attacks
 {
-    public abstract class EntityAttack : InteractionInitiator
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class EntityAttack : InteractionInitiator
     {
         public event Action<EntityAttack> Deactivated;
         public event Action<EntityAttack> Destroying;

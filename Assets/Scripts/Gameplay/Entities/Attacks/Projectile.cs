@@ -7,7 +7,6 @@ using UnityEngine;
 
 namespace TLH.Gameplay.Entities.Attacks
 {
-    [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Interactable))]
     public class Projectile : EntityAttack, IInteractionReceiver<KnockbackInteraction>, IInteractionReceiver<DestructionInteraction>
     {
