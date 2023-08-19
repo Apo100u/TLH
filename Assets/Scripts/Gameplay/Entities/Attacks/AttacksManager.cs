@@ -24,6 +24,14 @@ namespace TLH.Gameplay.Entities.Attacks
                 activeAttacks[i].OnUpdate();
             }
         }
+
+        private void FixedUpdate()
+        {
+            for (int i = activeAttacks.Count - 1; i >= 0; i--)
+            {
+                activeAttacks[i].OnFixedUpdate();
+            }
+        }
         
         public void UseAttackFromAttackData(AttackData attackData, Transform spawnPoint, Vector2 directionNormalized)
         {

@@ -18,7 +18,7 @@ namespace TLH.Gameplay.Entities.Attacks
             Vector2 directionNormalized = (transform.position - initiator.transform.position).normalized;
 
             float speed = interaction.MultiplyExistingVelocity
-                ? entityAttackRigidbody.velocity.magnitude * interaction.Power
+                ? velocity.magnitude * interaction.Power
                 : interaction.Power;
 
             SetVelocity(directionNormalized, speed);

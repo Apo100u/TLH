@@ -15,7 +15,8 @@ namespace TLH.Gameplay.Entities.Attacks
         public Entity CurrentSource { get; private set; }
 
         protected Rigidbody2D entityAttackRigidbody;
-        
+        protected Vector2 velocity;
+
         private LayerMask originalExcludeLayers;
         private bool isActive;
         private float shootTime;
@@ -48,7 +49,7 @@ namespace TLH.Gameplay.Entities.Attacks
 
         protected void SetVelocity(Vector2 directionNormalized, float speed)
         {
-            entityAttackRigidbody.velocity = directionNormalized * speed;
+            velocity = directionNormalized * speed;
             transform.up = directionNormalized;
         }
         
@@ -58,6 +59,11 @@ namespace TLH.Gameplay.Entities.Attacks
             {
                 Deactivate();
             }
+        }
+
+        public void OnFixedUpdate()
+        {
+            entityAttackRigidbody.MovePosition((Vector2)transform.position + velocity * Time.fixedDeltaTime);
         }
         
         protected override void OnTriggerEnter2D(Collider2D collider)
@@ -91,7 +97,7 @@ namespace TLH.Gameplay.Entities.Attacks
         {
             isActive = false;
             gameObject.SetActive(false);
-            entityAttackRigidbody.velocity = Vector2.zero;
+            velocity = Vector2.zero;
             Deactivated?.Invoke(this);
         }
 
