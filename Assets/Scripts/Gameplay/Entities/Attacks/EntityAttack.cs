@@ -60,12 +60,6 @@ namespace TLH.Gameplay.Entities.Attacks
             }
         }
         
-        private bool IsTriggerEnterIgnoredWithCollider(Collider2D colliderEnteringTrigger)
-        {
-            EntityAttack entityAttack = colliderEnteringTrigger.GetComponentInParent<EntityAttack>();
-            return entityAttack != null && entityAttack.CurrentSource == CurrentSource;
-        }
-        
         protected override void OnTriggerEnter2D(Collider2D collider)
         {
             if (!IsTriggerEnterIgnoredWithCollider(collider))
@@ -79,8 +73,18 @@ namespace TLH.Gameplay.Entities.Attacks
             }
         }
         
-        protected virtual void HandleUnignoredTrigger(Collider2D collider)
+        private bool IsTriggerEnterIgnoredWithCollider(Collider2D colliderEnteringTrigger)
         {
+            EntityAttack entityAttack = colliderEnteringTrigger.GetComponentInParent<EntityAttack>();
+            return entityAttack != null && entityAttack.CurrentSource == CurrentSource;
+        }
+        
+        private void HandleUnignoredTrigger(Collider2D collider)
+        {
+            if (!AttackData.LayersToPierce.ContainsLayer(collider.gameObject.layer))
+            {
+                Deactivate();
+            }
         }
         
         protected void Deactivate()

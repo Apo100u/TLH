@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bea96600b34fd243a6c9a63d8cfccde, type: 3}
+  m_Script: {fileID: 11500000, guid: a98df65c33b194640a0b6d975b8a72b9, type: 3}
   m_Name: TestBaseProjectileAttackData
   m_EditorClassIdentifier: 
   prefab: {fileID: 5098003049248277068, guid: b9116f547013570439bbc4b96f7501d7, type: 3}

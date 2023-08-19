@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace TLH.Gameplay.Entities.ActionData
 {
-    public abstract class AttackData : EntityActionData
+    [CreateAssetMenu(fileName = "New Attack Data", menuName = EntityActionDataMenuName + nameof(AttackData))]
+    public class AttackData : EntityActionData
     {
         [SerializeField] private EntityAttack prefab;
         public EntityAttack Prefab => prefab;

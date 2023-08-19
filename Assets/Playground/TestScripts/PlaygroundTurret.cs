@@ -12,7 +12,7 @@ namespace TLH.Playground
         [SerializeField] private Combat combat;
         [SerializeField] private Transform aimTarget;
         [SerializeField] private Pools pools;
-        [SerializeField] private ProjectileAttackData attackData;
+        [SerializeField] private AttackData attackData;
         
         private void Awake()
         {

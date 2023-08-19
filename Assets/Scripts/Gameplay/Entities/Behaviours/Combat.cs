@@ -72,10 +72,7 @@ namespace TLH.Gameplay.Entities.Behaviours
 
         private void OnAttackDataSet(AttackData attackData)
         {
-            if (attackData is ProjectileAttackData projectileAttackData)
-            {
-                attacksPool.RegisterHandledAttack(projectileAttackData);
-            }
+            attacksPool.RegisterHandledAttack(attackData);
         }
 
         private bool CanPerformPrimaryAttack()

@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using TLH.Extensions;
 using TLH.Gameplay.Interactions;
 using TLH.Gameplay.Interactions.Types;
@@ -9,6 +11,8 @@ namespace TLH.Gameplay.Entities.Attacks
     [RequireComponent(typeof(Interactable))]
     public class Projectile : EntityAttack, IInteractionReceiver<KnockbackInteraction>, IInteractionReceiver<DestructionInteraction>
     {
+        private Queue<Action> lateUpdateActions = new();
+
         public void HandleInteraction(KnockbackInteraction interaction, InteractionInitiator initiator)
         {
             Vector2 directionNormalized = (transform.position - initiator.transform.position).normalized;
@@ -18,13 +22,18 @@ namespace TLH.Gameplay.Entities.Attacks
                 : interaction.Power;
 
             SetVelocity(directionNormalized, speed);
-            
+
             if (initiator is EntityAttack attack)
             {
-                SetSource(attack.CurrentSource);
+                Entity source = attack.CurrentSource;
+
+                lateUpdateActions.Enqueue(() =>
+                {
+                    SetSource(source);
+                });
             }
         }
-        
+
         public void HandleInteraction(DestructionInteraction interaction, InteractionInitiator initiator)
         {
             if (interaction.LayersToDestroy.ContainsLayer(gameObject.layer))
@@ -33,11 +42,11 @@ namespace TLH.Gameplay.Entities.Attacks
             }
         }
 
-        protected override void HandleUnignoredTrigger(Collider2D collider)
+        private void LateUpdate()
         {
-            if (!AttackData.LayersToPierce.ContainsLayer(collider.gameObject.layer))
+            while (lateUpdateActions.Count > 0)
             {
-                Deactivate();
+                lateUpdateActions.Dequeue()?.Invoke();
             }
         }
     }
