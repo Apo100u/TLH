@@ -19,6 +19,14 @@ namespace TLH.Gameplay.Entities.ActionData
         [Tooltip("Time in seconds after which this object will be destroyed, if it wasn't already destroyed.")]
         [SerializeField][Min(0f)] private float lifeTimeInSec = 10f;
         public float LifeTimeInSec => lifeTimeInSec;
+
+        [Tooltip("If true, attack will follow entity along with going with its own velocity.")]
+        [SerializeField] private bool attachToEntity;
+        public bool AttachToEntity => attachToEntity;
+        
+        [Tooltip("If true, attack will point in the direction it's going.")]
+        [SerializeField] private bool updatePointingDirection;
+        public bool UpdatePointingDirection => updatePointingDirection;
         
         [Tooltip("Attack will go through these layers and still interact with them if there is an interaction.")]
         [SerializeField] private LayerMask layersToPierce;

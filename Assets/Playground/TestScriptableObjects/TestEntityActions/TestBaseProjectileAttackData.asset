@@ -16,6 +16,8 @@ MonoBehaviour:
   speed: 10
   cooldown: 0.3
   lifeTimeInSec: 5
+  attachToEntity: 0
+  updatePointingDirection: 1
   layersToPierce:
     serializedVersion: 2
     m_Bits: 128

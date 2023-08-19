@@ -18,8 +18,10 @@ namespace TLH.Gameplay.Entities.Attacks
         protected Vector2 velocity;
 
         private LayerMask originalExcludeLayers;
+        private Vector3 lastPosition;
+        private Vector3 lastSourcePosition;
         private bool isActive;
-        private float shootTime;
+        private float activationTime;
         
         private void Awake()
         {
@@ -35,7 +37,8 @@ namespace TLH.Gameplay.Entities.Attacks
         public void Activate(Vector2 directionNormalized, Entity source)
         {
             isActive = true;
-            shootTime = Time.time;
+            activationTime = Time.time;
+            lastSourcePosition = source.transform.position;
             gameObject.SetActive(true);
             SetSource(source);
             SetVelocity(directionNormalized, AttackData.Speed);
@@ -52,18 +55,47 @@ namespace TLH.Gameplay.Entities.Attacks
             velocity = directionNormalized * speed;
             transform.up = directionNormalized;
         }
+
+        public void OnFixedUpdate()
+        {
+            ProcessMovement();
+            
+            lastSourcePosition = CurrentSource.transform.position;
+            lastPosition = transform.position;
+        }
         
         public void OnUpdate()
         {
-            if (Time.time > shootTime + AttackData.LifeTimeInSec)
+            ProcessLifetime();
+            ProcessPointingDirection();
+        }
+
+        private void ProcessMovement()
+        {
+            Vector3 targetPosition = (Vector2)transform.position + velocity * Time.fixedDeltaTime;
+
+            if (AttackData.AttachToEntity)
+            {
+                targetPosition += CurrentSource.transform.position - lastSourcePosition;
+            }
+
+            entityAttackRigidbody.MovePosition(targetPosition);
+        }
+
+        private void ProcessLifetime()
+        {
+            if (Time.time > activationTime + AttackData.LifeTimeInSec)
             {
                 Deactivate();
             }
         }
 
-        public void OnFixedUpdate()
+        private void ProcessPointingDirection()
         {
-            entityAttackRigidbody.MovePosition((Vector2)transform.position + velocity * Time.fixedDeltaTime);
+            if (AttackData.UpdatePointingDirection)
+            {
+                transform.up = transform.position - lastPosition;
+            }
         }
         
         protected override void OnTriggerEnter2D(Collider2D collider)
