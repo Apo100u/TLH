@@ -20,7 +20,8 @@ namespace TLH.Gameplay.Entities.Attacks
 
         private LayerMask originalExcludeLayers;
         private Vector3 lastPosition;
-        private Vector3 lastSourcePosition;
+        private Vector3 lastFirstSourcePosition;
+        private Entity firstSource;
         private bool isActive;
         private float activationTime;
         
@@ -39,8 +40,9 @@ namespace TLH.Gameplay.Entities.Attacks
         {
             isActive = true;
             activationTime = Time.time;
-            lastSourcePosition = source.transform.position;
+            lastFirstSourcePosition = source.transform.position;
             gameObject.SetActive(true);
+            firstSource = source;
             SetSource(source);
             SetVelocity(directionNormalized, AttackData.Speed);
         }
@@ -61,7 +63,7 @@ namespace TLH.Gameplay.Entities.Attacks
         {
             ProcessMovement();
             
-            lastSourcePosition = CurrentSource.transform.position;
+            lastFirstSourcePosition = firstSource.transform.position;
             lastPosition = transform.position;
         }
         
@@ -77,7 +79,7 @@ namespace TLH.Gameplay.Entities.Attacks
 
             if (AttackData.AttachToEntity)
             {
-                targetPosition += CurrentSource.transform.position - lastSourcePosition;
+                targetPosition += firstSource.transform.position - lastFirstSourcePosition;
             }
 
             entityAttackRigidbody.MovePosition(targetPosition);
